@@ -1,0 +1,110 @@
+<div>
+    <div class="sheet-character-singleHeading">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.backgrounds'}}</div>
+	</div>
+
+    <div class="sheet-character-backgrounds">
+        {{#each system.backgrounds as |background key|}}
+            <div class="sheet-cell white-background black-color dataGroup"
+                    data-name="system.backgrounds.{{key}}.name" data-value="{{background.name}}">
+                <div class="input-wrapper {{#if (eq background.name '') }}show-underline{{/if}}">
+                    <input type="text" name="system.backgrounds.{{key}}.name" value="{{background.name}}" class="input-line emptyBox inputdata">
+                </div>
+            </div>
+            <div class="sheet-cell white-background black-color dataGroup"
+                    data-name="system.backgrounds.{{key}}.value" data-value="{{background.value}}">
+                <input type="number" name="system.backgrounds.{{key}}.value" value="{{background.value}}" class="input-number emptyBox inputdata">
+            </div>
+		{{/each}}
+    </div>
+
+    <div class="sheet-separator"></div>
+
+    <div class="sheet-character-singleHeading">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.experience.experience'}}</div>
+	</div>
+
+    <div class="sheet-character-exp">
+        <div class="sheet-cell white-background black-color dataGroup">
+            <b>{{localize 'sf.experience.general'}}:</b>
+        </div>
+        <div class="sheet-cell white-background black-color dataGroup">
+            <input type="number" name="system.exp.general" value="{{system.exp.general}}" class="input-number inputdata">
+        </div>
+        {{#if (eq system.settings.showSkillExperience.value true) }}
+            <div class="sheet-cell white-background black-color dataGroup">
+                <b>{{localize 'sf.experience.skills'}}:</b>
+            </div>
+            <div class="sheet-cell white-background black-color dataGroup">
+                <input type="number" name="system.exp.forSkills" value="{{system.exp.forSkills}}" class="input-number inputdata">
+            </div>
+        {{/if}}
+    </div>
+
+    <div class="sheet-separator"></div>
+
+    <div class="sheet-character-singleHeading">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.standing.standing'}}</div>
+	</div>
+
+    <div class="sheet-character-exp">
+        <div class="sheet-cell white-background black-color dataGroup">
+            <b>{{localize 'sf.standing.division'}}:</b>
+        </div>
+        <div class="sheet-cell white-background black-color dataGroup">
+            <div class="input-wrapper {{#if (eq system.standing.division '') }}show-underline{{/if}}">
+                <input type="text" name="system.standing.division" value="{{system.standing.division}}" class="input-char-short inputdata">
+            </div>
+        </div>
+
+        <div class="sheet-cell white-background black-color dataGroup">
+            <b>{{localize 'sf.standing.rank'}}:</b>
+        </div>
+        <div class="sheet-cell white-background black-color dataGroup">
+            <input type="number" name="system.standing.rank" value="{{system.standing.rank}}" class="input-number inputdata">
+        </div>
+    </div>
+
+    <div class="sheet-character-standing">
+        <div class="sheet-cell white-background black-color dataGroup">
+            <b>{{localize 'sf.standing.wins'}}:</b>
+        </div>
+        <div class="sheet-cell white-background black-color dataGroup">
+            <input type="number" name="system.standing.wins" value="{{system.standing.wins}}" class="input-number inputdata">
+        </div>
+
+        <div class="sheet-cell white-background black-color dataGroup">
+            <b>{{localize 'sf.standing.draws'}}:</b>
+        </div>
+        <div class="sheet-cell white-background black-color dataGroup">
+            <input type="number" name="system.standing.draws" value="{{system.standing.draws}}" class="input-number inputdata">
+        </div>
+
+        <div class="sheet-cell white-background black-color dataGroup">
+            <b>{{localize 'sf.standing.losses'}}:</b>
+        </div>
+        <div class="sheet-cell white-background black-color dataGroup">
+            <input type="number" name="system.standing.losses" value="{{system.standing.losses}}" class="input-number inputdata">
+        </div>
+
+        <div class="sheet-cell white-background black-color dataGroup">
+            <b>{{localize 'sf.standing.kos'}}:</b>
+        </div>
+        <div class="sheet-cell white-background black-color dataGroup">
+            <input type="number" name="system.standing.kos" value="{{system.standing.kos}}" class="input-number inputdata">
+        </div>
+    </div>
+
+    <div class="sheet-separator"></div>
+
+    <div class="sheet-character-singleHeading">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.notes'}}</div>
+	</div>
+
+    <div class="sheet-cell white-background black-color dataGroup">
+        <textarea name="system.notes" value="{{system.notes}}" class="input-area">{{system.notes}}</textarea>
+    </div>
+    <div>
+        <img class="charImg" src="{{actor.img}}" data-edit="img" data-action="editImage" title="{{actor.name}}">
+    </div>
+</div>

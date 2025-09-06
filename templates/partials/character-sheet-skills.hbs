@@ -1,0 +1,84 @@
+<div>
+	<div class="sheet-character-attributeHeadings">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.abilities.talents'}}</div>
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.abilities.skills'}}</div>
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.abilities.knowledges'}}</div>
+	</div>
+
+    <div class="sheet-character-abilities">
+        <div class="sheet-character-abilitiesColumn">
+            {{#each system.abilities.talents as |ability key|}}
+                <div data-name="system.abilities.talents.{{key}}.extended" data-value="{{ability.extended}}">
+                    {{#if (or (not ability.extended) @root.system.settings.showExtendedSkills.value)}}
+                        <div class="sheet-character-ability">
+                            <div class="sheet-cell white-background black-color dataGroup"
+                                    data-name="system.abilities.talents.{{key}}.label" data-value="{{ability.label}}">
+                                <b>{{localize ability.label}}</b>
+                            </div>
+                            <div class="sheet-cell white-background black-color dataGroup"
+                                    data-name="system.abilities.talents.{{key}}.value" data-value="{{ability.value}}">
+                                <input type="number" name="system.abilities.talents.{{key}}.value" value="{{ability.value}}" class="input-number">
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            {{/each}}
+        </div>
+        <div class="sheet-character-abilitiesColumn">
+            {{#each system.abilities.skills as |ability key|}}
+                <div data-name="system.abilities.skills.{{key}}.extended" data-value="{{ability.extended}}">
+                    {{#if (or (not ability.extended) @root.system.settings.showExtendedSkills.value)}}
+                        <div class="sheet-character-ability">
+                            <div class="sheet-cell white-background black-color dataGroup"
+                                    data-name="system.abilities.skills.{{key}}.label" data-value="{{ability.label}}">
+                                <b>{{localize ability.label}}</b>
+                            </div>
+                            <div class="sheet-cell white-background black-color dataGroup"
+                                    data-name="system.abilities.skills.{{key}}.value" data-value="{{ability.value}}">
+                                <input type="number" name="system.abilities.skills.{{key}}.value" value="{{ability.value}}" class="input-number inputdata">
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+    		{{/each}}
+        </div>
+        <div class="sheet-character-abilitiesColumn">
+            {{#each system.abilities.knowledges as |ability key|}}
+                <div data-name="system.abilities.knowledges.{{key}}.extended" data-value="{{ability.extended}}">
+                    {{#if (or (not ability.extended) @root.system.settings.showExtendedSkills.value)}}
+                        <div class="sheet-character-ability">
+                            <div class="sheet-cell white-background black-color dataGroup"
+                                    data-name="system.abilities.knowledges.{{key}}.label" data-value="{{ability.label}}">
+                                <b>{{localize ability.label}}</b>
+                            </div>
+                            <div class="sheet-cell white-background black-color dataGroup"
+                                    data-name="system.abilities.knowledges.{{key}}.value" data-value="{{ability.value}}">
+                                <input type="number" name="system.abilities.knowledges.{{key}}.value" value="{{ability.value}}" class="input-number inputdata">
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+    		{{/each}}
+        </div>
+    </div>
+
+    {{#if (eq system.settings.showLanguages.value true) }}
+        <div class="sheet-separator"></div>
+
+        <div class="sheet-character-singleHeading">
+            <div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.languages'}}</div>
+        </div>
+
+        <div class="sheet-character-languages">
+            {{#each system.abilities.languages as |language key|}}
+                <div class="sheet-cell white-background black-color dataGroup"
+                        data-name="system.abilities.languages.{{key}}.name" data-value="{{language.name}}">
+                    <div class="input-wrapper {{#if (eq language.name '') }}show-underline{{/if}}">
+                        <input type="text" name="system.abilities.languages.{{key}}.name" value="{{language.name}}"
+                            class="input-line-onlyLabel emptyBox inputdata">
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+</div>

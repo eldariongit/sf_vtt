@@ -1,0 +1,48 @@
+{
+  "id": "sf_vtt",
+  "title": "Street Fighter",
+  "version": "0.0.1",
+  "description": "A Street Fighter skeleton for Foundry VTT.",
+  "authors": [
+    {
+      "name": "Cedrik Duval",
+      "discord": "eldarion",
+      "role": "Developer"
+    }
+  ],
+  "compatibility": {
+    "minimum": 13,
+    "verified": 13.342,
+    "maximum": 13
+  },
+  "esmodules": [
+    "sf_vtt.js"
+  ],
+  "scripts": [
+    "modules/apps/utils-app.js",
+    "modules/apps/utils-app-btn.js",
+    "modules/hooks.js"
+  ],
+  "styles": [
+    "sf_vtt.css",
+    "templates/apps/utils-app.css"
+  ],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "socket": false,
+  "initiative": {
+    "formula": "1d10",
+    "decimals": 0
+  },
+  "grid": {
+    "distance": 1,
+    "units": "Meter"
+  },
+  "primaryTokenAttribute": "traits.health.current"
+}

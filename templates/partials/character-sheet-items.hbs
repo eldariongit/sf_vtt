@@ -1,0 +1,17 @@
+<div>
+    <div class="sheet-character-singleHeading">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.items'}}</div>
+	</div>
+
+    <div class="sheet-character-items">
+        {{#each system.items as |item key|}}
+            <div class="sheet-cell white-background black-color dataGroup"
+                    data-name="system.items.{{key}}.desc" data-value="{{item.desc}}">
+                <div class="input-wrapper {{#if (eq item.desc '') }}show-underline{{/if}}">
+                    <input type="text" name="system.items.{{key}}.desc" value="{{item.desc}}"
+                        class="input-char-short emptyBox inputdata">
+                </div>
+            </div>
+		{{/each}}
+    </div>
+</div>

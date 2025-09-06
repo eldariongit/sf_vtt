@@ -1,0 +1,18 @@
+<div>
+    <div class="sheet-character-singleHeading">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.settings.settings'}}</div>
+	</div>
+
+    {{#each system.settings as |setting key|}}
+        <div class="sheet-character-ability">
+            <div class="sheet-cell white-background black-color dataGroup"
+                    data-name="system.settings.{{key}}.label" data-value="{{setting.label}}">
+                <b>{{localize setting.label}}</b>
+            </div>
+            <div class="sheet-cell white-background black-color dataGroup"
+                    data-name="system.settings.{{key}}.value" data-value="{{setting.value}}">
+                <input type="checkbox" name="system.settings.{{key}}.value" class="input-number" {{isChecked setting.value}}>
+            </div>
+        </div>
+    {{/each}}
+</div>

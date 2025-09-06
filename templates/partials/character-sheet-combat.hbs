@@ -1,0 +1,297 @@
+<div>
+    <div class="sheet-character-singleHeading">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.techniques.techniques'}}</div>
+	</div>
+
+    <div class="sheet-character-abilities">
+        <div class="sheet-character-abilitiesColumn">
+            <div class="sheet-character-ability">
+                <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.punch.label}}</b></div>
+                <div class="sheet-cell white-background black-color dataGroup">
+                    <input type="number" name="system.techniques.punch.value" value="{{system.techniques.punch.value}}" class="input-number">
+                </div>
+            </div>
+            <div class="sheet-character-ability">
+                <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.kick.label}}</b></div>
+                <div class="sheet-cell white-background black-color dataGroup">
+                    <input type="number" name="system.techniques.kick.value" value="{{system.techniques.kick.value}}" class="input-number">
+                </div>
+            </div>
+        </div>
+        <div class="sheet-character-abilitiesColumn">
+            <div class="sheet-character-ability">
+                <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.block.label}}</b></div>
+                <div class="sheet-cell white-background black-color dataGroup">
+                    <input type="number" name="system.techniques.block.value" value="{{system.techniques.block.value}}" class="input-number">
+                </div>
+            </div>
+            <div class="sheet-character-ability">
+                <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.grab.label}}</b></div>
+                <div class="sheet-cell white-background black-color dataGroup">
+                    <input type="number" name="system.techniques.grab.value" value="{{system.techniques.grab.value}}" class="input-number">
+                </div>
+            </div>
+        </div>
+        <div class="sheet-character-abilitiesColumn">
+            <div class="sheet-character-ability">
+                <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.athletics.label}}</b></div>
+                <div class="sheet-cell white-background black-color dataGroup">
+                    <input type="number" name="system.techniques.athletics.value" value="{{system.techniques.athletics.value}}" class="input-number">
+                </div>
+            </div>
+            <div class="sheet-character-ability">
+                <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.focus.label}}</b></div>
+                <div class="sheet-cell white-background black-color dataGroup">
+                    <input type="number" name="system.techniques.focus.value" value="{{system.techniques.focus.value}}" class="input-number">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{#if (eq system.settings.showWeaponTechniques.value true) }}
+        <div class="sheet-character-singleHeading">
+            <div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.techniques.weaponTechniques'}}</div>
+        </div>
+
+        <div class="sheet-character-abilities">
+            <div class="sheet-character-abilitiesColumn">
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.archery.label}}</b></div>
+                    <div class="sheet-cell white-background black-color dataGroup">
+                        <input type="number" name="system.techniques.archery.value" value="{{system.techniques.archery.value}}" class="input-number">
+                    </div>
+                </div>
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.axe.label}}</b></div>
+                    <div class="sheet-cell white-background black-color dataGroup">
+                        <input type="number" name="system.techniques.axe.value" value="{{system.techniques.axe.value}}" class="input-number">
+                    </div>
+                </div>
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.blunt.label}}</b></div>
+                    <div class="sheet-cell white-background black-color dataGroup">
+                        <input type="number" name="system.techniques.blunt.value" value="{{system.techniques.blunt.value}}" class="input-number">
+                    </div>
+                </div>
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.flail.label}}</b></div>
+                    <div class="sheet-cell white-background black-color dataGroup">
+                        <input type="number" name="system.techniques.flail.value" value="{{system.techniques.flail.value}}" class="input-number">
+                    </div>
+                </div>
+            </div>
+            <div class="sheet-character-abilitiesColumn">
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.knive.label}}</b></div>
+                    <div class="sheet-cell white-background black-color dataGroup">
+                        <input type="number" name="system.techniques.knive.value" value="{{system.techniques.knive.value}}" class="input-number">
+                    </div>
+                </div>
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.spear.label}}</b></div>
+                    <div class="sheet-cell white-background black-color dataGroup">
+                        <input type="number" name="system.techniques.spear.value" value="{{system.techniques.spear.value}}" class="input-number">
+                    </div>
+                </div>
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.staff.label}}</b></div>
+                    <div class="sheet-cell white-background black-color dataGroup">
+                        <input type="number" name="system.techniques.staff.value" value="{{system.techniques.staff.value}}" class="input-number">
+                    </div>
+                </div>
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.sword.label}}</b></div>
+                    <div class="sheet-cell white-background black-color dataGroup">
+                        <input type="number" name="system.techniques.sword.value" value="{{system.techniques.sword.value}}" class="input-number">
+                    </div>
+                </div>
+            </div>
+            <div class="sheet-character-abilitiesColumn">
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.thrown.label}}</b></div>
+                    <div class="sheet-cell white-background black-color dataGroup">
+                        <input type="number" name="system.techniques.knive.thrown" value="{{system.techniques.thrown.value}}" class="input-number">
+                    </div>
+                </div>
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.whip.label}}</b></div>
+                    <div class="sheet-cell white-background black-color dataGroup">
+                        <input type="number" name="system.techniques.whip.value" value="{{system.techniques.whip.value}}" class="input-number">
+                    </div>
+                </div>
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background"></div>
+                    <div class="sheet-cell white-background">
+                        <input type="text" name="forHeightOnly" class="input-nothing" disabled>
+                    </div>
+                </div>
+                <div class="sheet-character-ability">
+                    <div class="sheet-cell white-background black-color dataGroup"><b>{{localize system.techniques.firearm.label}}</b></div>
+                    <div class="sheet-cell white-background black-color dataGroup">
+                        <input type="number" name="system.techniques.firearm.value" value="{{system.techniques.firearm.value}}" class="input-number">
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+
+    <div class="sheet-separator"></div>
+
+	<div class="sheet-character-attributeHeadings">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.resources.health'}}</div>
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.resources.willpower'}}</div>
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.resources.chi'}}</div>
+	</div>
+
+    <div class="sheet-character-abilities">
+        {{#each system.resources as |resource key|}}
+            <div class="sheet-character-abilitiesColumn">
+                <div class="sheet-cell-center black-color dataGroup">
+                    <span data-name="system.resources.{{key}}.current" data-value="{{resource.current}}">
+                        <input type="number" name="system.resources.{{key}}.current" value="{{resource.current}}" class="input-number inputdata">
+                    </span>
+                    /
+                    <span data-name="system.resources.{{key}}.total" data-value="{{resource.total}}">
+                        <input type="number" name="system.resources.{{key}}.total" value="{{resource.total}}" class="input-number inputdata">
+                    </span>
+                </div>
+            </div>
+		{{/each}}
+    </div>
+
+    <div class="sheet-separator"></div>
+
+    <div class="sheet-character-singleHeading">
+        <div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.basicManeuvers.basicManeuvers'}}</div>
+    </div>
+
+    <div class="sheet-character-abilitiesColumn">
+        {{#if (gt system.techniques.punch.value 0)}}
+            <div class="sheet-character-attributeHeadings">
+                <div class="pullLeft sheet-cell black-color dataGroup">{{localize 'sf.basicManeuvers.jabPunch'}}</div>
+                <div class="pullLeft centerText black-color dataGroup">{{add system.attributes.dexterity.value 2}} /
+                        {{add system.attributes.strength.value system.techniques.punch.value -1}} /
+                        {{add system.techniques.athletics.value 0}}</div>
+                <div class="pullRight sheet-cell black-color dataGroup"></div>
+            </div>
+            <div class="sheet-character-attributeHeadings">
+                <div class="pullLeft sheet-cell black-color dataGroup">{{localize 'sf.basicManeuvers.strongPunch'}}</div>
+                <div class="pullLeft centerText black-color dataGroup">{{add system.attributes.dexterity.value 0}} /
+                        {{add system.attributes.strength.value system.techniques.punch.value 1}} /
+                        {{add system.techniques.athletics.value 0}}</div>
+                <div class="pullRight sheet-cell black-color dataGroup"></div>
+            </div>
+            <div class="sheet-character-attributeHeadings">
+                <div class="pullLeft sheet-cell black-color dataGroup">{{localize 'sf.basicManeuvers.fiercePunch'}}</div>
+                <div class="pullLeft centerText black-color dataGroup">{{add system.attributes.dexterity.value -1}} /
+                        {{add system.attributes.strength.value system.techniques.punch.value 3}} /
+                        {{add system.techniques.athletics.value -1}}</div>
+                <div class="pullRight sheet-cell black-color dataGroup"></div>
+            </div>
+        {{/if}}
+        {{#if (gt system.techniques.kick.value 0)}}
+            <div class="sheet-character-attributeHeadings">
+                <div class="pullLeft sheet-cell black-color dataGroup">{{localize 'sf.basicManeuvers.shortKick'}}</div>
+                <div class="pullLeft centerText black-color dataGroup">{{add system.attributes.dexterity.value 1}} /
+                        {{add system.attributes.strength.value system.techniques.kick.value 0}} /
+                        {{add system.techniques.athletics.value 0}}</div>
+                <div class="pullRight sheet-cell black-color dataGroup"></div>
+            </div>
+            <div class="sheet-character-attributeHeadings">
+                <div class="pullLeft sheet-cell black-color dataGroup">{{localize 'sf.basicManeuvers.forwardKick'}}</div>
+                <div class="pullLeft centerText black-color dataGroup">{{add system.attributes.dexterity.value 0}} /
+                        {{add system.attributes.strength.value system.techniques.kick.value 2}} /
+                        {{add system.techniques.athletics.value -1}}</div>
+                <div class="pullRight sheet-cell black-color dataGroup"></div>
+            </div>
+            <div class="sheet-character-attributeHeadings">
+                <div class="pullLeft sheet-cell black-color dataGroup">{{localize 'sf.basicManeuvers.roundhouseKick'}}</div>
+                <div class="pullLeft centerText black-color dataGroup">{{add system.attributes.dexterity.value -2}} /
+                        {{add system.attributes.strength.value system.techniques.kick.value 4}} /
+                        {{add system.techniques.athletics.value -1}}</div>
+                <div class="pullRight sheet-cell black-color dataGroup"></div>
+            </div>
+        {{/if}}
+        {{#if (gt system.techniques.grab.value 0)}}
+            <div class="sheet-character-attributeHeadings">
+                <div class="pullLeft sheet-cell black-color dataGroup">{{localize 'sf.basicManeuvers.grab'}}</div>
+                <div class="pullLeft centerText black-color dataGroup">{{add system.attributes.dexterity.value 0}} /
+                        {{add system.attributes.strength.value system.techniques.grab.value 0}} /
+                        {{add system.techniques.athletics.value 0}}</div>
+                <div class="pullRight sheet-cell black-color dataGroup">{{localize 'sf.basicManeuvers.ignoresBlocks'}}</div>
+            </div>
+        {{/if}}
+        {{#if (gt system.techniques.block.value 0)}}
+            <div class="sheet-character-attributeHeadings">
+                <div class="pullLeft sheet-cell black-color dataGroup">{{localize 'sf.basicManeuvers.block'}}</div>
+                <div class="pullLeft centerText black-color dataGroup">{{add system.attributes.dexterity.value 4}} / 0 / 0</div>
+                <div class="pullRight sheet-cell black-color dataGroup">{{localize 'sf.basicManeuvers.soak'}}: {{add system.attributes.stamina.value system.techniques.block.value}}</div>
+            </div>
+        {{/if}}
+        <div class="sheet-character-attributeHeadings">
+            <div class="pullLeft sheet-cell black-color dataGroup">{{localize 'sf.basicManeuvers.movement'}}</div>
+            <div class="pullLeft centerText black-color dataGroup">{{add system.attributes.dexterity.value 3}} / 0 / {{add system.techniques.athletics.value 3}}</div>
+            <div class="pullRight sheet-cell black-color dataGroup"></div>
+        </div>
+    </div>
+
+    <div class="sheet-separator"></div>
+
+    <div class="sheet-character-singleHeading">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.maneuvers'}}</div>
+	</div>
+
+    <div class="sheet-character-abilitiesColumn">
+        {{#each system.maneuvers as |maneuver key|}}
+            <div class="sheet-cell black-color dataGroup">
+                <span data-name="system.maneuvers.{{key}}.name" data-value="{{maneuver.name}}">
+                    <div class="input-wrapper {{#if (eq maneuver.name '') }}show-underline{{/if}}">
+                        <input type="text" name="system.maneuvers.{{key}}.name" value="{{maneuver.name}}" class="input-char-short inputdata">
+                    </div>
+                </span>
+
+                <span data-name="system.maneuvers.{{key}}.speed" data-value="{{maneuver.speed}}">
+                    <div class="input-wrapper {{#if (eq maneuver.speed '') }}show-underline{{/if}}">
+                        <input type="text" name="system.maneuvers.{{key}}.speed" value="{{maneuver.speed}}" class="input-number-short inputdata">
+                    </div>
+                </span>
+                /
+                <span data-name="system.maneuvers.{{key}}.damage" data-value="{{maneuver.damage}}">
+                    <div class="input-wrapper {{#if (eq maneuver.damage '') }}show-underline{{/if}}">
+                        <input type="text" name="system.maneuvers.{{key}}.damage" value="{{maneuver.damage}}" class="input-number-long inputdata">
+                    </div>
+                </span>
+                /
+                <span data-name="system.maneuvers.{{key}}.move" data-value="{{maneuver.move}}">
+                    <div class="input-wrapper {{#if (eq maneuver.move '') }}show-underline{{/if}}">
+                        <input type="text" name="system.maneuvers.{{key}}.move" value="{{maneuver.move}}" class="input-number-short inputdata">
+                    </div>
+                </span>
+
+                <span data-name="system.maneuvers.{{key}}.special" data-value="{{maneuver.special}}">
+                    <div class="input-wrapper {{#if (eq maneuver.special '') }}show-underline{{/if}}">
+                        <input type="text" name="system.maneuvers.{{key}}.special" value="{{maneuver.special}}" class="input-char-short inputdata">
+                    </div>
+                </span>
+            </div>
+        {{/each}}
+    </div>
+
+    <div class="sheet-separator"></div>
+
+    <div class="sheet-character-singleHeading">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.combos'}}</div>
+	</div>
+
+    <div class="sheet-character-abilitiesColumn">
+        {{#each system.combos as |combo key|}}
+            <div class="sheet-cell black-color dataGroup">
+                <div data-name="system.combos.{{key}}" data-value="{{combo}}">
+                    <div class="input-wrapper {{#if (eq combo '') }}show-underline{{/if}}">
+                        <input type="text" name="system.combos.{{key}}" value="{{combo}}" class="input-char-long inputdata">
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

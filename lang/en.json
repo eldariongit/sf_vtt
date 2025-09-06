@@ -1,0 +1,143 @@
+{
+  "MYCUSTOM.Actor.Character": "Character",
+  "MYCUSTOM.ActorSheet.Title": "Character Sheet",
+
+  "SFVTT.SheetClassCharacter": "Fighter",
+  
+  "SIDEBAR": {
+    "CreateActor": "Create New Fighter"
+  },
+
+  "sf": {
+    "details": {
+      "name": "Name",
+      "style": "Style",
+      "stable": "Stable",
+      "school": "School",
+      "concept": "Concept",
+      "signature": "Signature"
+    },
+    "attributes": {
+			"attributes": "Attributes",
+			"physical": "Physical",
+			"social": "Social",
+			"mental": "Mental",
+			"strength": "Strength",
+			"charisma": "Charisma",
+			"intelligence": "Intelligence",
+			"dexterity": "Dexterity",
+			"manipulation": "Manipulation",
+			"wits": "Wits",
+			"stamina": "Stamina",
+			"perception": "Perception",
+			"appearance": "Appearance"
+    },
+    "abilities": {
+      "abilities": "Abilities",
+      "talents": "Talents",
+      "skills": "Skills",
+      "knowledges": "Knowledges",
+      "alertness": "Alertness",
+      "interrogation": "Interrogation",
+      "intimidation": "Intimidation",
+      "insight": "Insight",
+      "instruction": "Instruction",
+      "manage": "Manage",
+      "searching": "Searching",
+      "streetwise": "Streetwise",
+      "subterfuge": "Subterfuge",
+
+      "blindFighting": "Blind Fighting",
+      "bookie": "Bookie",
+      "demolitions": "Demolitions",
+      "disguise": "Disguise",
+      "drive": "Drive",
+      "fly": "Fly",
+      "leadership": "Leadership",
+      "publicist": "Publicist",
+      "repair": "Repair",
+      "security": "Security",
+      "stealth": "Stealth",
+      "survival": "Survival",
+
+      "alchemy": "Alchemy",
+      "arena": "Arena",
+      "cybernetics": "Cybernetics",
+      "computer": "Computer",
+      "finance": "Finance",
+      "investigation": "Investigation",
+      "law": "Law",
+      "medicine": "Medicine",
+      "mysteries": "Mysteries",
+      "science": "Science",
+      "styleLore": "Style Lore"
+    },
+    "languages": "Languages",
+    "backgrounds": "Backgrounds",
+    "experience": {
+      "experience": "Experience",
+      "general": "General",
+      "skills": "For skills"
+    },
+    "techniques": {
+        "techniques": "Techniques",
+        "punch": "Punch",
+        "kick": "Kick",
+        "block": "Block",
+        "grab": "Grab",
+        "athletics": "Athletics",
+        "focus": "Focus",
+        "weaponTechniques": "Weapon techniques",
+        "archery": "Archery",
+        "axe": "Axe",
+        "blunt": "Blunt",
+        "flail": "Flail",
+        "knive": "Knive",
+        "spear": "Spear",
+        "staff": "Staff",
+        "sword": "Sword",
+        "thrown": "Thrown",
+        "whip": "Whip",
+        "firearm": "Firearm"
+    },
+    "resources": {
+      "health": "Health",
+      "willpower": "Willpower",
+      "chi": "Chi"
+    },
+    "standing": {
+      "standing": "Standing",
+      "wins": "Wins",
+      "draws": "Draws",
+      "losses": "Losses",
+      "kos": "KOs",
+      "division": "Division",
+      "rank": "Rank"
+    },
+    "basicManeuvers": {
+      "basicManeuvers": "Basic Maneuvers",
+      "jabPunch": "Jab Punch",
+      "strongPunch": "Strong Punch",
+      "fiercePunch": "Fierce Punch",
+      "shortKick": "Short Kick",
+      "forwardKick": "Forward Kick",
+      "roundhouseKick": "Roundhouse Kick",
+      "grab": "Grab",
+      "ignoresBlocks": "Ignores Blocks",
+      "block": "Block",
+      "soak": "Soak",
+      "movement": "Movement"
+    },
+    "maneuvers": "Maneuvers",
+    "notes": "Bio & Notes",
+    "items": "Items & Gear",
+    "settings": {
+      "settings": "Settings",
+      "showExtendedSkills": "Show extended abilities",
+      "showLanguages": "Show languages",
+      "showWeaponTechniques": "Show weapon techniques",
+      "showSkillExperience": "Show skill experience"
+    },
+    "combos": "Combos"
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "Actor": {
+    "types": [
+      "Fighter"
+    ],
+
+    "Fighter" : {
+      "details": {
+        "stable": "",
+        "style": "",
+        "school": "",
+        "concept": "",
+        "signature": ""
+      },
+
+      "attributes": {
+        "strength": { "value": 1, "max": 8, "label": "sf.attributes.strength" },
+        "charisma": { "value": 1, "max": 8, "label": "sf.attributes.charisma" },
+        "perception": { "value": 1, "max": 8, "label": "sf.attributes.perception" },
+
+        "dexterity": { "value": 1, "max": 8, "label": "sf.attributes.dexterity" },
+        "manipulation": { "value": 1, "max": 8, "label": "sf.attributes.manipulation" },
+        "intelligence": { "value": 1, "max": 8, "label": "sf.attributes.intelligence" },
+
+        "stamina": { "value": 1, "max": 8, "label": "sf.attributes.stamina" },
+        "appearance": { "value": 1, "max": 8, "label": "sf.attributes.appearance" },
+        "wits": { "value": 1, "max": 8, "label": "sf.attributes.wits" }
+      },
+      "abilities": {
+        "talents": {
+          "alertness":  { "value": 0, "max": 8, "label": "sf.abilities.alertness" },
+          "interrogation":  { "value": 0, "max": 8, "label": "sf.abilities.interrogation" },
+          "intimidation":  { "value": 0, "max": 8, "label": "sf.abilities.intimidation" },
+          "insight":  { "value": 0, "max": 8, "label": "sf.abilities.insight" },
+          "instruction":  { "value": 0, "max": 8, "label": "sf.abilities.instruction", "extended": true },
+          "manage":  { "value": 0, "max": 8, "label": "sf.abilities.manage", "extended": true },
+          "searching":  { "value": 0, "max": 8, "label": "sf.abilities.searching", "extended": true },
+          "streetwise":  { "value": 0, "max": 8, "label": "sf.abilities.streetwise" },
+          "subterfuge":  { "value": 0, "max": 8, "label": "sf.abilities.subterfuge" }
+        },
+        "skills": {
+          "blindFighting":  { "value": 0, "max": 8, "label": "sf.abilities.blindFighting" },
+          "bookie":  { "value": 0, "max": 8, "label": "sf.abilities.bookie", "extended": true },
+          "demolitions":  { "value": 0, "max": 8, "label": "sf.abilities.demolitions", "extended": true },
+          "disguise":  { "value": 0, "max": 8, "label": "sf.abilities.disguise", "extended": true },
+          "drive":  { "value": 0, "max": 8, "label": "sf.abilities.drive" },
+          "fly":  { "value": 0, "max": 8, "label": "sf.abilities.fly", "extended": true },
+          "leadership":  { "value": 0, "max": 8, "label": "sf.abilities.leadership" },
+          "publicist":  { "value": 0, "max": 8, "label": "sf.abilities.publicist", "extended": true },
+          "repair":  { "value": 0, "max": 8, "label": "sf.abilities.repair", "extended": true },
+          "security":  { "value": 0, "max": 8, "label": "sf.abilities.security" },
+          "stealth":  { "value": 0, "max": 8, "label": "sf.abilities.stealth" },
+          "survival":  { "value": 0, "max": 8, "label": "sf.abilities.survival" }
+        },
+        "knowledges": {
+          "alchemy":  { "value": 0, "max": 8, "label": "sf.abilities.alchemy", "extended": true },
+          "arena":  { "value": 0, "max": 8, "label": "sf.abilities.arena" },
+          "cybernetics":  { "value": 0, "max": 8, "label": "sf.abilities.cybernetics", "extended": true },
+          "computer":  { "value": 0, "max": 8, "label": "sf.abilities.computer" },
+          "finance":  { "value": 0, "max": 8, "label": "sf.abilities.finance", "extended": true },
+          "investigation":  { "value": 0, "max": 8, "label": "sf.abilities.investigation" },
+          "law":  { "value": 0, "max": 8, "label": "sf.abilities.law", "extended": true },
+          "medicine":  { "value": 0, "max": 8, "label": "sf.abilities.medicine" },
+          "mysteries":  { "value": 0, "max": 8, "label": "sf.abilities.mysteries" },
+          "science":  { "value": 0, "max": 8, "label": "sf.abilities.science", "extended": true },
+          "styleLore":  { "value": 0, "max": 8, "label": "sf.abilities.styleLore" }
+        },
+        "languages": {
+          "language1": { "name": "" },
+          "language2": { "name": "" },
+          "language3": { "name": "" },
+          "language4": { "name": "" },
+          "language5": { "name": "" },
+          "language6": { "name": "" }
+        }
+      },
+      "backgrounds": {
+          "background1": { "value": 0, "max": 5, "name": "" },
+          "background2": { "value": 0, "max": 5, "name": "" },
+          "background3": { "value": 0, "max": 5, "name": "" },
+          "background4": { "value": 0, "max": 5, "name": "" },
+          "background5": { "value": 0, "max": 5, "name": "" },
+          "background6": { "value": 0, "max": 5, "name": "" }
+      },
+      "techniques": {
+        "punch": { "value": 0, "max": 8, "label": "sf.techniques.punch" },
+        "kick": { "value": 0, "max": 8, "label": "sf.techniques.kick" },
+        "block": { "value": 0, "max": 8, "label": "sf.techniques.block" },
+        "grab": { "value": 0, "max": 8, "label": "sf.techniques.grab" },
+        "athletics": { "value": 0, "max": 8, "label": "sf.techniques.athletics" },
+        "focus": { "value": 0, "max": 8, "label": "sf.techniques.focus" },
+
+        "archery":  { "value": 0, "max": 8, "label": "sf.techniques.archery" },
+        "axe":  { "value": 0, "max": 8, "label": "sf.techniques.axe" },
+        "blunt":  { "value": 0, "max": 8, "label": "sf.techniques.blunt" },
+        "flail":  { "value": 0, "max": 8, "label": "sf.techniques.flail" },
+        "knive":  { "value": 0, "max": 8, "label": "sf.techniques.knive" },
+        "spear":  { "value": 0, "max": 8, "label": "sf.techniques.spear" },
+        "staff":  { "value": 0, "max": 8, "label": "sf.techniques.staff" },
+        "sword":  { "value": 0, "max": 8, "label": "sf.techniques.sword" },
+        "thrown":  { "value": 0, "max": 8, "label": "sf.techniques.thrown" },
+        "whip":  { "value": 0, "max": 8, "label": "sf.techniques.whip" },
+
+        "firearm":  { "value": 0, "max": 8, "label": "sf.techniques.firearm" }
+      },
+
+      "renown": {
+        "glory": { "permanent": 0, "temp": 0, "max": 10 },
+        "honor": { "permanent": 0, "temp": 0, "max": 10 }
+      },
+
+      "resources": {
+        "health": { "total": 10, "current": 10, "max": 20 },
+        "chi": { "total": 1, "current": 1, "max": 10 },
+        "willpower": { "total": 1, "current": 1, "max": 10 }
+      },
+
+      "maneuvers": {
+        "maneuver1": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver2": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver3": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver4": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver5": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver6": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver7": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver8": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver9": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver10": { "name": "", "speed": "", "damage": "", "move": "", "special": "" }
+      },
+
+      "combos": {
+          "combo1": "",
+          "combo2": "",
+          "combo3": "",
+          "combo4": "",
+          "combo5": ""
+      },
+      
+      "standing": {
+        "division": "",
+        "rank": 1,
+        "wins": 0,
+        "draws": 0,
+        "losses": 0,
+        "kos": 0
+      },
+
+      "exp": {
+        "general": 0,
+        "forSkills": 0
+      },
+
+      "items": {
+        "item1": { "desc": "" },
+        "item2": { "desc": "" },
+        "item3": { "desc": "" },
+        "item4": { "desc": "" },
+        "item5": { "desc": "" },
+        "item6": { "desc": "" },
+        "item7": { "desc": "" },
+        "item8": { "desc": "" },
+        "item9": { "desc": "" },
+        "item10": { "desc": "" }
+      },
+
+      "notes": "",
+
+      "settings": {
+        "showExtendedSkills": { "value": true, "label": "sf.settings.showExtendedSkills" },
+        "showLanguages": { "value": true, "label": "sf.settings.showLanguages" },
+        "showWeaponTechniques": { "value": true, "label": "sf.settings.showWeaponTechniques" },
+        "showSkillExperience": { "value": true, "label": "sf.settings.showSkillExperience" }
+      }
+    },
+
+    "Item": {
+      "types": [
+        "Item"
+      ],
+
+      "templates": {
+        "generalItems": {
+          "name": "Item",
+          "description": ""
+        }
+      },
+
+      "Item": {
+        "templates": [ "generalItems" ],
+        "type": "item",
+        "quantity": 1
+      }
+    }
+  }
+}

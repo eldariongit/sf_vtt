@@ -159,6 +159,42 @@
 		{{/each}}
     </div>
 
+	<div class="sheet-character-renownHeadings">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.renown.glory'}}</div>
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.renown.honor'}}</div>
+	</div>
+
+    <div class="sheet-character-renownHeadings">
+        <div class="sheet-character-abilitiesColumn">
+            <div class="sheet-character-ability">
+                <div class="sheet-cell white-background black-color dataGroup"><b>{{localize 'sf.renown.permanent'}}</b></div>
+                <div class="sheet-cell white-background black-color dataGroup">
+                    <input type="number" name="system.renown.glory.permanent" value="{{system.renown.glory.permanent}}" class="input-number">
+                </div>
+            </div>
+            <div class="sheet-character-ability">
+                <div class="sheet-cell white-background black-color dataGroup"><b>{{localize 'sf.renown.temp'}}</b></div>
+                <div class="sheet-cell white-background black-color dataGroup">
+                    <input type="number" name="system.renown.glory.temp" value="{{system.renown.glory.temp}}" class="input-number">
+                </div>
+            </div>
+        </div>
+        <div class="sheet-character-abilitiesColumn">
+            <div class="sheet-character-ability">
+                <div class="sheet-cell white-background black-color dataGroup"><b>{{localize 'sf.renown.permanent'}}</b></div>
+                <div class="sheet-cell white-background black-color dataGroup">
+                    <input type="number" name="system.renown.honor.permanent" value="{{system.renown.honor.permanent}}" class="input-number">
+                </div>
+            </div>
+            <div class="sheet-character-ability">
+                <div class="sheet-cell white-background black-color dataGroup"><b>{{localize 'sf.renown.temp'}}</b></div>
+                <div class="sheet-cell white-background black-color dataGroup">
+                    <input type="number" name="system.renown.honor.temp" value="{{system.renown.honor.temp}}" class="input-number">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="sheet-separator"></div>
 
     <div class="sheet-character-singleHeading">

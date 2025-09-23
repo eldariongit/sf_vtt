@@ -105,6 +105,12 @@
       "willpower": "Willpower",
       "chi": "Chi"
     },
+    "renown": {
+      "glory": "Glory",
+      "honor": "Honor",
+      "permanent": "Permanent",
+      "temp": "Temporary"
+    },
     "standing": {
       "standing": "Standing",
       "wins": "Wins",

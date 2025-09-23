@@ -52,6 +52,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+.sf_vtt.sheet.characterSheet .sheet-character-renownHeadings {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
 .sf_vtt.sheet.characterSheet .sheet-character-singleHeading {
   display: grid;
   grid-template-columns: 100%;

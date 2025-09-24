@@ -59,6 +59,7 @@
           "computer":  { "value": 0, "max": 8, "label": "sf.abilities.computer" },
           "finance":  { "value": 0, "max": 8, "label": "sf.abilities.finance", "extended": true },
           "investigation":  { "value": 0, "max": 8, "label": "sf.abilities.investigation" },
+          "languages":  { "value": 0, "max": 8, "label": "sf.abilities.languages", "extended": true },
           "law":  { "value": 0, "max": 8, "label": "sf.abilities.law", "extended": true },
           "medicine":  { "value": 0, "max": 8, "label": "sf.abilities.medicine" },
           "mysteries":  { "value": 0, "max": 8, "label": "sf.abilities.mysteries" },

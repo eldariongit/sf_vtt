@@ -13,38 +13,9 @@ class DiceTools extends Application {
   activateListeners(html) {
     super.activateListeners(html);
 
-    // html.find("#set-initiative").click(async ev => {
-    //   ev.preventDefault();
-
-    //   const init = parseFloat(html.find("#initiative-value").val());
-
-    //   if (isNaN(init)) {
-    //     ui.notifications.warn("Please enter a valid number.");
-    //     return;
-    //   }
-
-    //   const combat = game.combat;
-    //   if (!combat) {
-    //     ui.notifications.warn("No active combat.");
-    //     return;
-    //   }
-
-    //   const combatant = combat.getCombatantByToken(
-    //     game.user.character?.getActiveTokens()[0]?.id
-    //   );
-
-    //   if (!combatant) {
-    //     ui.notifications.warn("You don’t control a combatant in this combat.");
-    //     return;
-    //   }
-
-    //   await combat.setInitiative(combatant.id, init);
-    //   ui.notifications.info(`Initiative set to ${init}.`);
-    // });
-
     html.find("#set-initiative").click(async ev => {
       ev.preventDefault();
-      const init = parseFloat(html.find("#initiative-value").val());
+      let init = parseFloat(html.find("#initiative-value").val());
       if (isNaN(init)) return ui.notifications.warn("Please enter a valid number.");
 
       const combat = game.combat;
@@ -63,6 +34,14 @@ class DiceTools extends Application {
           ui.notifications.warn(`${token.name} is not in the combat tracker.`);
           continue;
         }
+
+        const actor = token.actor;
+        // Wits added as tenth
+        init = init + actor.system.attributes.wits.value / 10;
+        // Perception added as hundredth
+        init = init + actor.system.attributes.perception.value / 100;
+        // Random d10 (0-9)
+        init = init + Math.floor(Math.random() * 10) / 1000;
         await combat.setInitiative(combatant.id, init);
         ui.notifications.info(`${token.name}: Initiative set to ${init}.`);
       }

@@ -1,32 +1,27 @@
-<nav class="tabs" data-group="primary">
-  <a class="item" data-tab="roller">Dice Roller</a>
-  <a class="item" data-tab="initiative">Initiative</a>
-</nav>
+<div>
+  <!-- Dice Roller -->
+  <form>
+    <h3>Dice Roller</h3>
+    <div class="form-group">
+      <label>Number of Dice:</label>
+      <input id="num-dice" type="number" value="1" min="1"/>
+    </div>
+    <div class="form-group">
+      <label>Target Value:</label>
+      <input id="target-value" type="number" value="5" min="1"/>
+    </div>
+    <button id="roll-button" type="button">Roll</button>
+  </form>
 
-<section class="content">
-  <!-- Dice Roller Tab -->
-  <div class="tab" data-tab="roller">
-    <form>
-      <div class="form-group">
-        <label>Number of Dice:</label>
-        <input id="num-dice" type="number" value="5" min="1"/>
-      </div>
-      <div class="form-group">
-        <label>Target Value:</label>
-        <input id="target-value" type="number" value="6" min="1"/>
-      </div>
-      <button id="roll-button" type="button">Roll</button>
-    </form>
-  </div>
+  <hr />
 
-  <!-- Initiative Tab -->
-  <div class="tab" data-tab="initiative">
-    <form>
-      <div class="form-group">
-        <label>Initiative:</label>
-        <input id="initiative-value" type="number" step="1" />
-      </div>
-      <button id="set-initiative" type="button">Set Initiative</button>
-    </form>
-  </div>
-</section>
+  <!-- Initiative Setter -->
+  <form>
+    <h3>Initiative Setter</h3>
+    <div class="form-group">
+      <label>Initiative:</label>
+      <input id="initiative-value" type="number" step="1" />
+    </div>
+    <button id="set-initiative" type="button">Set Initiative</button>
+  </form>
+</div>

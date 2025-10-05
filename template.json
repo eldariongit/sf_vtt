@@ -1,7 +1,8 @@
 {
   "Actor": {
     "types": [
-      "Fighter"
+      "Fighter",
+      "NPC"
     ],
 
     "Fighter" : {
@@ -171,6 +172,105 @@
         "showLanguages": { "value": true, "label": "sf.settings.showLanguages" },
         "showWeaponTechniques": { "value": true, "label": "sf.settings.showWeaponTechniques" },
         "showSkillExperience": { "value": true, "label": "sf.settings.showSkillExperience" }
+      }
+    },
+
+    "NPC" : {
+      "details": {
+        "style": ""
+      },
+
+      "attributes": {
+        "strength": { "value": 1, "max": 8, "label": "sf.attributes.strength" },
+        "charisma": { "value": 1, "max": 8, "label": "sf.attributes.charisma" },
+        "perception": { "value": 1, "max": 8, "label": "sf.attributes.perception" },
+
+        "dexterity": { "value": 1, "max": 8, "label": "sf.attributes.dexterity" },
+        "manipulation": { "value": 1, "max": 8, "label": "sf.attributes.manipulation" },
+        "intelligence": { "value": 1, "max": 8, "label": "sf.attributes.intelligence" },
+
+        "stamina": { "value": 1, "max": 8, "label": "sf.attributes.stamina" },
+        "appearance": { "value": 1, "max": 8, "label": "sf.attributes.appearance" },
+        "wits": { "value": 1, "max": 8, "label": "sf.attributes.wits" }
+      },
+      "abilities": {
+        "ability1":  { "name": "", "value": 0 },
+        "ability2":  { "name": "", "value": 0 },
+        "ability3":  { "name": "", "value": 0 },
+        "ability4":  { "name": "", "value": 0 },
+        "ability5":  { "name": "", "value": 0 },
+        "ability6":  { "name": "", "value": 0 },
+        "ability7":  { "name": "", "value": 0 },
+        "abilit18":  { "name": "", "value": 0 },
+        "ability9":  { "name": "", "value": 0 },
+        "ability10":  { "name": "", "value": 0 }
+      },
+      "backgrounds": {
+          "background1": { "value": 0, "max": 5, "name": "" },
+          "background2": { "value": 0, "max": 5, "name": "" }
+      },
+      "techniques": {
+        "punch": { "value": 0, "max": 8, "label": "sf.techniques.punch" },
+        "kick": { "value": 0, "max": 8, "label": "sf.techniques.kick" },
+        "block": { "value": 0, "max": 8, "label": "sf.techniques.block" },
+        "grab": { "value": 0, "max": 8, "label": "sf.techniques.grab" },
+        "athletics": { "value": 0, "max": 8, "label": "sf.techniques.athletics" },
+        "focus": { "value": 0, "max": 8, "label": "sf.techniques.focus" },
+
+        "archery":  { "value": 0, "max": 8, "label": "sf.techniques.archery" },
+        "axe":  { "value": 0, "max": 8, "label": "sf.techniques.axe" },
+        "blunt":  { "value": 0, "max": 8, "label": "sf.techniques.blunt" },
+        "flail":  { "value": 0, "max": 8, "label": "sf.techniques.flail" },
+        "knive":  { "value": 0, "max": 8, "label": "sf.techniques.knive" },
+        "spear":  { "value": 0, "max": 8, "label": "sf.techniques.spear" },
+        "staff":  { "value": 0, "max": 8, "label": "sf.techniques.staff" },
+        "sword":  { "value": 0, "max": 8, "label": "sf.techniques.sword" },
+        "thrown":  { "value": 0, "max": 8, "label": "sf.techniques.thrown" },
+        "whip":  { "value": 0, "max": 8, "label": "sf.techniques.whip" },
+
+        "firearm":  { "value": 0, "max": 8, "label": "sf.techniques.firearm" }
+      },
+
+      "resources": {
+        "health": { "total": 10, "current": 10, "max": 20 },
+        "chi": { "total": 1, "current": 1, "max": 10 },
+        "willpower": { "total": 1, "current": 1, "max": 10 }
+      },
+
+      "maneuvers": {
+        "maneuver1": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver2": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver3": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver4": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver5": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver6": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver7": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver8": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver9": { "name": "", "speed": "", "damage": "", "move": "", "special": "" },
+        "maneuver10": { "name": "", "speed": "", "damage": "", "move": "", "special": "" }
+      },
+
+      "combos": {
+          "combo1": "",
+          "combo2": "",
+          "combo3": "",
+          "combo4": "",
+          "combo5": ""
+      },
+      
+      "standing": {
+        "division": "",
+        "rank": 1,
+        "wins": 0,
+        "draws": 0,
+        "losses": 0,
+        "kos": 0
+      },
+
+      "notes": "",
+
+      "settings": {
+        "showWeaponTechniques": { "value": true, "label": "sf.settings.showWeaponTechniques" }
       }
     },
 

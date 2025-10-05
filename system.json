@@ -1,7 +1,7 @@
 {
   "id": "sf_vtt",
   "title": "Street Fighter",
-  "version": "0.0.1",
+  "version": "0.9.0",
   "description": "A Street Fighter skeleton for Foundry VTT.",
   "authors": [
     {

@@ -1,6 +1,7 @@
 import { SFVTT } from "./modules/config.js";
 import sfActor from "./modules/objects/sfActor.js";
 import sfCharacterSheet from "./modules/sheets/sfCharacterSheet.js";
+import sfNpcSheet from "./modules/sheets/sfNpcSheet.js";
 
 Hooks.once("init", async () => {
     console.log("SFVTT | Initializing Street Fighter Core system");
@@ -18,6 +19,9 @@ Hooks.once("init", async () => {
     DocumentSheetConfig.unregisterSheet(Actor, "core", foundry.appv1.sheets.ActorSheet);
     DocumentSheetConfig.registerSheet(Actor, "sf_vtt", sfCharacterSheet, {
         types: ["Fighter"], makeDefault: true, label: "SFVTT.SheetClassCharacter"
+    })
+    DocumentSheetConfig.registerSheet(Actor, "sf_vtt", sfNpcSheet, {
+        types: ["NPC"], makeDefault: false, label: "SFVTT.SheetClassNpc"
     })
 
     // Load all partial Handlebar Files

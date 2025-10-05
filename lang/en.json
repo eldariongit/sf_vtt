@@ -3,6 +3,7 @@
   "MYCUSTOM.ActorSheet.Title": "Character Sheet",
 
   "SFVTT.SheetClassCharacter": "Fighter",
+  "SFVTT.SheetClassNpc": "NPC",
   
   "SIDEBAR": {
     "CreateActor": "Create New Fighter"

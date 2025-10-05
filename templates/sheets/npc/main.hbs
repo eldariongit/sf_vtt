@@ -1,0 +1,37 @@
+<div class="sheet sheet-border white-background">
+    <div class="sheet-character-details1">
+        <div class="sheet-cell white-background black-color dataGroup">
+            <b>{{localize 'sf.details.name'}}:</b>
+        </div>
+        <div class="sheet-cell white-background black-color dataGroup">
+            <input type="text" name="name" value="{{actor.name}}" class="input-char-short inputdata">
+        </div>
+        <div class="sheet-cell white-background black-color dataGroup">
+            <b>{{localize 'sf.details.style'}}:</b>
+        </div>
+        <div class="sheet-cell white-background black-color dataGroup">
+            <input type="text" name="system.details.style" value="{{system.details.style}}" class="input-char-short inputdata">
+        </div>
+    </div>
+
+    <div class="sheet-separator"></div>
+    
+	<div class="sheet-character-attributeHeadings">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.attributes.physical'}}</div>
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.attributes.social'}}</div>
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.attributes.mental'}}</div>
+	</div>
+
+    <div class="sheet-character-attributes">
+        {{#each system.attributes as |attribute key|}}
+            <div class="sheet-cell white-background black-color dataGroup"
+                    data-name="system.attributes.{{key}}.label" data-value="{{attribute.label}}">
+                <b>{{localize attribute.label}}</b>
+            </div>
+            <div class="sheet-cell white-background black-color dataGroup"
+                    data-name="system.attributes.{{key}}.value" data-value="{{attribute.value}}">
+                <input type="number" name="system.attributes.{{key}}.value" value="{{attribute.value}}" class="input-number inputdata">
+            </div>
+		{{/each}}
+    </div>
+</div>

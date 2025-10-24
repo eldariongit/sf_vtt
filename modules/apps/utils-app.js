@@ -10,6 +10,13 @@ class DiceTools extends Application {
     });
   }
 
+  // Send GM flag to template
+  getData(options) {
+    const data = super.getData(options);
+    data.isGM = game.user.isGM;
+    return data;
+  }
+
   activateListeners(html) {
     super.activateListeners(html);
 
@@ -54,6 +61,7 @@ class DiceTools extends Application {
 
       // Perform the roll
       const roll = await new Roll(`${numDice}d10cs>=${target}df=1`).evaluate();
+      AudioHelper.play({src: CONFIG.sounds.dice, volume: 0.8, autoplay: true, loop: false}, true);
 
       // Sum up successes and deduct failures
       let successes = 0;
@@ -120,6 +128,52 @@ class DiceTools extends Application {
         flavor: `${numDice}d10 vs ${target}`,
         content: content
       });      
+    });
+
+    // --- Reset All Initiatives (GM only) ---
+    html.find("#reset-initiatives").click(async ev => {
+      ev.preventDefault();
+      if (!game.user.isGM) return ui.notifications.warn("Only the GM can reset initiatives.");
+      const combat = game.combat;
+      if (!combat) return ui.notifications.warn("No active combat to reset.");
+
+      for (let combatant of combat.combatants) {
+        await combat.setInitiative(combatant.id, null);
+      }
+      await combat.nextRound();
+
+      ui.notifications.info("All combatant initiatives have been reset.");
+    });
+
+    // End combat
+    html.find("#end-combat").click(async ev => {
+      ev.preventDefault();
+      if (!game.user.isGM) return ui.notifications.warn("Only the GM can end combat.");
+
+      // Make sure there's an active combat
+      const combat = game.combat;
+      if (!combat) return ui.notifications.warn("No active combat to end.");
+
+      // Ask for confirmation
+      new Dialog({
+        title: "End Combat?",
+        content: "<p>Do you really want to end the current combat?</p>",
+        buttons: {
+          yes: {
+            icon: "<i class='fas fa-check'></i>",
+            label: "Yes, end it",
+            callback: async () => {
+              await combat.endCombat(); // Foundry method to end current combat
+              ui.notifications.info("Combat has been finished.");
+            }
+          },
+          no: {
+            icon: "<i class='fas fa-times'></i>",
+            label: "Cancel"
+          }
+        },
+        default: "no"
+      }).render(true);
     });
   }
 }

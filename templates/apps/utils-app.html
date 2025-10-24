@@ -1,4 +1,4 @@
-<div>
+<div class="dice-tools-panel">
   <!-- Dice Roller -->
   <form>
     <h3>Dice Roller</h3>
@@ -24,4 +24,15 @@
     </div>
     <button id="set-initiative" type="button">Set Initiative</button>
   </form>
+
+  <hr />
+
+  <!-- Reset Initiatives (GM only) -->
+  {{#if isGM}}
+  <div class="reset-initiatives">
+    <h3>Combat Management</h3>
+    <button id="reset-initiatives" type="button" class="gm-only">Reset All Initiatives</button>
+    <button id="end-combat" type="button" class="gm-only">End combat</button>
+  </div>
+  {{/if}}
 </div>

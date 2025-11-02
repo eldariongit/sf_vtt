@@ -1,4 +1,4 @@
-<div class="sheet sheet-border white-background">
+<div class="sheet sheet-border white-background scroller">
     <div class="sheet-character-details1">
         <div class="sheet-cell white-background black-color dataGroup">
             <b>{{localize 'sf.details.name'}}:</b>
@@ -200,5 +200,70 @@
             <div class="pullRight sheet-cell black-color dataGroup"></div>
         </div>
     </div>
-    
+
+    <div class="sheet-separator"></div>
+
+    <div class="sheet-character-singleHeading">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.maneuvers'}}</div>
+	</div>
+
+    <div class="sheet-character-abilitiesColumn">
+        {{#each system.maneuvers as |maneuver key|}}
+            <div class="sheet-cell black-color dataGroup">
+                <span data-name="system.maneuvers.{{key}}.name" data-value="{{maneuver.name}}">
+                    <div class="input-wrapper {{#if (eq maneuver.name '') }}show-underline{{/if}}">
+                        <input type="text" name="system.maneuvers.{{key}}.name" value="{{maneuver.name}}" class="input-char-short inputdata">
+                    </div>
+                </span>
+
+                <span data-name="system.maneuvers.{{key}}.speed" data-value="{{maneuver.speed}}">
+                    <div class="input-wrapper {{#if (eq maneuver.speed '') }}show-underline{{/if}}">
+                        <input type="text" name="system.maneuvers.{{key}}.speed" value="{{maneuver.speed}}" class="input-number-short inputdata">
+                    </div>
+                </span>
+                /
+                <span data-name="system.maneuvers.{{key}}.damage" data-value="{{maneuver.damage}}">
+                    <div class="input-wrapper {{#if (eq maneuver.damage '') }}show-underline{{/if}}">
+                        <input type="text" name="system.maneuvers.{{key}}.damage" value="{{maneuver.damage}}" class="input-number-long inputdata">
+                    </div>
+                </span>
+                /
+                <span data-name="system.maneuvers.{{key}}.move" data-value="{{maneuver.move}}">
+                    <div class="input-wrapper {{#if (eq maneuver.move '') }}show-underline{{/if}}">
+                        <input type="text" name="system.maneuvers.{{key}}.move" value="{{maneuver.move}}" class="input-number-short inputdata">
+                    </div>
+                </span>
+
+                <span data-name="system.maneuvers.{{key}}.special" data-value="{{maneuver.special}}">
+                    <div class="input-wrapper {{#if (eq maneuver.special '') }}show-underline{{/if}}">
+                        <input type="text" name="system.maneuvers.{{key}}.special" value="{{maneuver.special}}" class="input-char-short inputdata">
+                    </div>
+                </span>
+            </div>
+        {{/each}}
+    </div>
+
+    <div class="sheet-separator"></div>
+
+    <div class="sheet-character-singleHeading">
+		<div class="pullLeft headlineGroup centerText black-color">{{localize 'sf.combos'}}</div>
+	</div>
+
+    <div class="sheet-character-abilitiesColumn">
+        {{#each system.combos as |combo key|}}
+            <div class="sheet-cell black-color dataGroup">
+                <div data-name="system.combos.{{key}}" data-value="{{combo}}">
+                    <div class="input-wrapper {{#if (eq combo '') }}show-underline{{/if}}">
+                        <input type="text" name="system.combos.{{key}}" value="{{combo}}" class="input-char-long inputdata">
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+    <div class="sheet-separator"></div>
+
+    <div>
+        <img class="charImg" src="{{actor.img}}" data-edit="img" data-action="editImage" title="{{actor.name}}">
+    </div>
 </div>

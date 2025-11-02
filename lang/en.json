@@ -146,6 +146,7 @@
       "showWeaponTechniques": "Show weapon techniques",
       "showSkillExperience": "Show skill experience"
     },
-    "combos": "Combos"
+    "combos": "Combos",
+    "techniquesAbilities": "Techniques & Abilities"
   }
 }

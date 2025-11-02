@@ -202,8 +202,7 @@
         "ability6":  { "name": "", "value": 0 },
         "ability7":  { "name": "", "value": 0 },
         "abilit18":  { "name": "", "value": 0 },
-        "ability9":  { "name": "", "value": 0 },
-        "ability10":  { "name": "", "value": 0 }
+        "ability9":  { "name": "", "value": 0 }
       },
       "backgrounds": {
           "background1": { "value": 0, "max": 5, "name": "" },
@@ -215,20 +214,7 @@
         "block": { "value": 0, "max": 8, "label": "sf.techniques.block" },
         "grab": { "value": 0, "max": 8, "label": "sf.techniques.grab" },
         "athletics": { "value": 0, "max": 8, "label": "sf.techniques.athletics" },
-        "focus": { "value": 0, "max": 8, "label": "sf.techniques.focus" },
-
-        "archery":  { "value": 0, "max": 8, "label": "sf.techniques.archery" },
-        "axe":  { "value": 0, "max": 8, "label": "sf.techniques.axe" },
-        "blunt":  { "value": 0, "max": 8, "label": "sf.techniques.blunt" },
-        "flail":  { "value": 0, "max": 8, "label": "sf.techniques.flail" },
-        "knive":  { "value": 0, "max": 8, "label": "sf.techniques.knive" },
-        "spear":  { "value": 0, "max": 8, "label": "sf.techniques.spear" },
-        "staff":  { "value": 0, "max": 8, "label": "sf.techniques.staff" },
-        "sword":  { "value": 0, "max": 8, "label": "sf.techniques.sword" },
-        "thrown":  { "value": 0, "max": 8, "label": "sf.techniques.thrown" },
-        "whip":  { "value": 0, "max": 8, "label": "sf.techniques.whip" },
-
-        "firearm":  { "value": 0, "max": 8, "label": "sf.techniques.firearm" }
+        "focus": { "value": 0, "max": 8, "label": "sf.techniques.focus" }
       },
 
       "resources": {

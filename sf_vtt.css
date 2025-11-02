@@ -77,6 +77,11 @@
   display: grid;
   grid-template-columns: 70% 30%;
 }
+.sf_vtt.sheet.characterSheet .sheet-npc-abilities {
+  display: grid;
+  grid-template-columns: 23% 10% 23% 10% 23% 10%;
+  grid-template-rows: repeat(3, 1fr);
+}
 .sf_vtt.sheet.characterSheet .sheet-character-languages {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

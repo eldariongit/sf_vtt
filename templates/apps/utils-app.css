@@ -8,3 +8,20 @@ a.dice-roller-button {
   border-radius: 8px;
   box-shadow: 0 0 5px #000;
 }
+
+#token-hover-preview {
+  position: absolute;
+  pointer-events: none;
+  z-index: 100000;
+  border: 2px solid #666;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 4px;
+  border-radius: 6px;
+  display: none;
+}
+
+#token-hover-preview img {
+  max-width: 200px;
+  max-height: 200px;
+  display: block;
+}

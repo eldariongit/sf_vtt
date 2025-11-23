@@ -35,10 +35,54 @@ Hooks.once("ready", async () => {
     // Finished initialization and release lock
     CONFIG.INIT = false;
 
+    if (!document.getElementById("token-hover-preview")) {
+        const div = document.createElement("div");
+        div.id = "token-hover-preview";
+        document.body.appendChild(div);
+    }
+
     // Only execute when run as a GM
     if (!game.user.isGM) {
         return;
     }
+});
+
+Hooks.on("hoverToken", (token, hovered) => {
+  const preview = document.getElementById("token-hover-preview");
+  if (!preview) return;
+
+  if (hovered) {
+    const actor = token.actor;
+    if (!actor) return;
+
+    // actor.img = default prototype image (the one you want to show)
+    const img = actor.img;
+    if (!img) return;
+
+    preview.innerHTML = `<img src="${img}">`;
+    preview.style.display = "block";
+
+    // Track mouse movement to reposition the preview
+    const moveHandler = ev => {
+      preview.style.left = (ev.clientX + 15) + "px";
+      preview.style.top = (ev.clientY + 15) + "px";
+    };
+
+    document.addEventListener("mousemove", moveHandler);
+
+    // Store the handler so we can remove it later
+    token._hoverMoveHandler = moveHandler;
+
+  } else {
+    preview.style.display = "none";
+    preview.innerHTML = "";
+
+    // Remove mousemove handler
+    if (token._hoverMoveHandler) {
+      document.removeEventListener("mousemove", token._hoverMoveHandler);
+      token._hoverMoveHandler = null;
+    }
+  }
 });
 
 function preloadHandlebarsTemplates() {

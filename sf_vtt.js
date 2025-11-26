@@ -65,7 +65,7 @@ Hooks.on("hoverToken", (token, hovered) => {
     // Track mouse movement to reposition the preview
     const moveHandler = ev => {
       preview.style.left = (ev.clientX + 15) + "px";
-      preview.style.top = (ev.clientY + 15) + "px";
+      preview.style.top = (ev.clientY - 285) + "px";
     };
 
     document.addEventListener("mousemove", moveHandler);

@@ -36,7 +36,6 @@ class DiceTools extends Application {
 
       // Apply initiative to each selected token’s combatant
       for (let token of selected) {
-        let tokenInit = init;
         const combatant = combat.getCombatantByToken(token.id);
         if (!combatant) {
           ui.notifications.warn(`${token.name} is not in the combat tracker.`);
@@ -45,7 +44,7 @@ class DiceTools extends Application {
 
         const actor = token.actor;
         // Wits added as tenth
-        tokenInit = tokenInit + actor.system.attributes.wits.value / 10;
+        let tokenInit = init + actor.system.attributes.wits.value / 10;
         // Perception added as hundredth
         tokenInit = tokenInit + actor.system.attributes.perception.value / 100;
         // Random d10 (0-9)

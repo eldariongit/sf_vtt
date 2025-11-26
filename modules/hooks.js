@@ -56,3 +56,27 @@ Hooks.on("ready", () => {
 Hooks.on("renderChatMessage", function (message,html){
     html.find(`div.dice-tooltip`).css("display", "block")
 });
+
+// Clear the 'acted' status icon for all combatants when the combat round advances.
+// This keeps the per-round "acted" markers in sync: marks are added via the
+// "Mark Acted" button and removed automatically at the next round.
+Hooks.on("updateCombat", (combat, changed) => {
+  // Only act when the round value changes
+  if (!changed || typeof changed.round === "undefined") return;
+
+  const actedIcon = "icons/svg/clock.svg";
+  try {
+    for (const combatant of combat.combatants) {
+      // tokenId is the id of the Token in the current Scene
+      const token = canvas.tokens.get(combatant.tokenId);
+      if (!token || !token.document) continue;
+      const effects = token.document.effects || [];
+      if (effects.includes(actedIcon)) {
+        // toggleEffect will remove the icon if present
+        token.toggleEffect(actedIcon);
+      }
+    }
+  } catch (err) {
+    console.error("Error clearing acted icons on round change:", err);
+  }
+});

@@ -54,6 +54,36 @@ class DiceTools extends Application {
       }
     });
 
+    // Mark selected tokens as having acted this round
+    html.find("#mark-acted").click(async ev => {
+      ev.preventDefault();
+
+      const combat = game.combat;
+      if (!combat) return ui.notifications.warn("No active combat.");
+
+      const actedIcon = "icons/logo-scifi-blank.png";
+
+      // Get selected tokens
+      const selected = canvas.tokens.controlled;
+      if (!selected.length) {
+        return ui.notifications.warn("Please select at least one token.");
+      }
+
+      for (let token of selected) {
+        const combatant = combat.getCombatantByToken(token.id);
+        if (!combatant) {
+          ui.notifications.warn(`${token.name} is not in the combat tracker.`);
+          continue;
+        }
+
+        // Update the displayed combat tracker icon
+        await combatant.update({ img: actedIcon });
+
+        ui.notifications.info(`${token.name} marked as acted.`);
+      }
+    });
+
+    // --- Custom Dice Roller ---
     html.find("#roll-button").click(async ev => {
       ev.preventDefault();
       const numDice = parseInt(html.find("#num-dice").val()) || 1;
@@ -139,6 +169,7 @@ class DiceTools extends Application {
 
       for (let combatant of combat.combatants) {
         await combat.setInitiative(combatant.id, null);
+        await combatant.update({ img: "" });
       }
       await combat.nextRound();
 

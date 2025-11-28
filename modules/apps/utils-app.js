@@ -77,9 +77,12 @@ class DiceTools extends Application {
         }
 
         // Update the displayed combat tracker icon
-        await combatant.update({ img: actedIcon });
-
-        ui.notifications.info(`${token.name} marked as acted.`);
+        if (combatant.img === actedIcon) {
+          await combatant.update({ img: "" });
+        } else {
+          await combatant.update({ img: actedIcon });
+          ui.notifications.info(`${token.name} marked as acted.`);
+        }
       }
     });
 

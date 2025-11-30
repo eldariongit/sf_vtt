@@ -61,28 +61,39 @@ class DiceTools extends Application {
       const combat = game.combat;
       if (!combat) return ui.notifications.warn("No active combat.");
 
-      const actedIcon = "icons/logo-scifi-blank.png";
+      const actedIcon = "systems/sf_vtt/assets/icons/fist.png";
 
-      // Get selected tokens
       const selected = canvas.tokens.controlled;
       if (!selected.length) {
         return ui.notifications.warn("Please select at least one token.");
       }
 
       for (let token of selected) {
+        if (!game.user.isGM && !token.isOwner) {
+          ui.notifications.warn(`You do not have permission to mark ${token.name}.`);
+          continue;
+        }
+
         const combatant = combat.getCombatantByToken(token.id);
         if (!combatant) {
           ui.notifications.warn(`${token.name} is not in the combat tracker.`);
           continue;
         }
 
-        // Update the displayed combat tracker icon
+        let mark = true;
         if (combatant.img === actedIcon) {
-          await combatant.update({ img: "" });
+          mark = false;
         } else {
-          await combatant.update({ img: actedIcon });
           ui.notifications.info(`${token.name} marked as acted.`);
         }
+
+        const activeGm = game.users.activeGM;
+        const queryData = {
+          tokenId: token.id,
+          mark: mark
+
+        };
+        const queryValue = await activeGm.query("sf_vtt.markActed", queryData, { timeout: 5 * 1000 });
       }
     });
 

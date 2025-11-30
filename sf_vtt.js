@@ -31,7 +31,7 @@ Hooks.once("init", async () => {
     registerHandlebarsHelpers();
 });
 
-Hooks.once("ready", async () => {
+Hooks.once("ready", () => {
     // Finished initialization and release lock
     CONFIG.INIT = false;
 
@@ -41,11 +41,29 @@ Hooks.once("ready", async () => {
         document.body.appendChild(div);
     }
 
-    // Only execute when run as a GM
+    console.log("SF_VTT | Ready. GM status:", game.user.isGM);
+
     if (!game.user.isGM) {
         return;
     }
+
+    // GM-only stuff
 });
+
+async function markActedHandler(data, {timeout}) {
+    const combatant = game.combat.getCombatantByToken(data.tokenId);
+    if (combatant) {
+        //await combatant.update({ img: data.icon });
+        if (data.mark) {
+            await combatant.update({ img: "systems/sf_vtt/assets/icons/fist.png" });
+        } else {
+            await combatant.update({ img: "" });
+        }
+    }
+    return {};
+}
+
+CONFIG.queries["sf_vtt.markActed"] = markActedHandler;
 
 Hooks.on("hoverToken", (token, hovered) => {
   const preview = document.getElementById("token-hover-preview");

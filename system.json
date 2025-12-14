@@ -40,6 +40,7 @@
     "formula": "1d10",
     "decimals": 0
   },
+  "background": "systems/sf_vtt/assets/sf_logo_large.png",
   "grid": {
     "distance": 1,
     "units": "Meter"

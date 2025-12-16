@@ -20,8 +20,17 @@ class DiceTools extends Application {
   activateListeners(html) {
     super.activateListeners(html);
     
+    // Store html reference for hook access
+    this._html = html;
+    
     // Update resource displays when the app opens or re-renders
     this.updateResourceDisplays(html);
+
+    // Update resource displays when a token is selected
+    this._onControlToken = () => {
+      if (this._html) this.updateResourceDisplays(this._html);
+    };
+    Hooks.on("controlToken", this._onControlToken);
 
     html.find("#set-initiative").click(async ev => {
       ev.preventDefault();
@@ -293,5 +302,13 @@ class DiceTools extends Application {
     html.find("#health-display").text(`${health.current}/${health.total}`);
     html.find("#chi-display").text(`${chi.current}/${chi.total}`);
     html.find("#willpower-display").text(`${willpower.current}/${willpower.total}`);
+  }
+
+  close(options) {
+    // Clean up hooks when app closes
+    if (this._onControlToken) {
+      Hooks.off("controlToken", this._onControlToken);
+    }
+    return super.close(options);
   }
 }

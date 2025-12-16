@@ -25,3 +25,61 @@ a.dice-roller-button {
   max-height: 300px;
   display: block;
 }
+
+/* Resource Manager Styles */
+.resource-manager {
+  padding: 8px 0;
+}
+
+.resource-manager h3 {
+  margin: 1px 0 5px 0;
+  font-size: 0.95rem;
+}
+
+.resource-group {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.resource-group label {
+  min-width: 70px;
+  font-weight: 500;
+}
+
+.resource-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.resource-btn {
+  padding: 4px 8px;
+  min-width: 30px;
+  border: 1px solid #888;
+  background: rgba(50, 50, 50, 0.8);
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.resource-btn:hover {
+  background: rgba(70, 70, 70, 0.9);
+}
+
+.resource-btn.reset {
+  min-width: auto;
+  padding: 4px 6px;
+  font-size: 0.85rem;
+}
+
+.resource-value {
+  min-width: 50px;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+}

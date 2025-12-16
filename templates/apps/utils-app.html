@@ -1,6 +1,6 @@
 <div class="dice-tools-panel">
   <!-- Dice Roller -->
-  <form>
+  <form class="resource-manager">
     <h3>Dice Roller</h3>
     <div class="form-group">
       <label>Number of Dice:</label>
@@ -10,21 +10,55 @@
       <label>Target Value:</label>
       <input id="target-value" type="number" value="6" min="1"/>
     </div>
-    <button id="roll-button" type="button">Roll</button>
+    <button id="roll-button" type="button" class="resource-btn">Roll</button>
   </form>
 
   <hr />
 
   <!-- Initiative Setter -->
-  <form>
+  <form class="resource-manager">
     <h3>Initiative Setter</h3>
     <div class="form-group">
       <label>Initiative:</label>
       <input id="initiative-value" type="number" step="1" />
     </div>
-    <button id="set-initiative" type="button">Set Initiative</button>
-    <button id="mark-acted" type="button" title="Mark selected tokens as having acted this round">Mark Acted</button>
+    <button id="set-initiative" type="button" class="resource-btn">Set Initiative</button>
+    <button id="mark-acted" type="button" class="resource-btn" title="Mark selected tokens as having acted this round">Mark Acted</button>
   </form>
+
+  <hr />
+
+  <!-- Resource Manager -->
+  <div class="resource-manager">
+    <h3>Resource Manager</h3>
+    <div class="resource-group">
+      <label>Health:</label>
+      <div class="resource-buttons">
+        <button id="health-decrease" type="button" class="resource-btn">−</button>
+        <span id="health-display" class="resource-value">0/0</span>
+        <button id="health-increase" type="button" class="resource-btn">+</button>
+        <button id="health-reset" type="button" class="resource-btn reset">Reset</button>
+      </div>
+    </div>
+    <div class="resource-group">
+      <label>Chi:</label>
+      <div class="resource-buttons">
+        <button id="chi-decrease" type="button" class="resource-btn">−</button>
+        <span id="chi-display" class="resource-value">0/0</span>
+        <button id="chi-increase" type="button" class="resource-btn">+</button>
+        <button id="chi-reset" type="button" class="resource-btn reset">Reset</button>
+      </div>
+    </div>
+    <div class="resource-group">
+      <label>Willpower:</label>
+      <div class="resource-buttons">
+        <button id="willpower-decrease" type="button" class="resource-btn">−</button>
+        <span id="willpower-display" class="resource-value">0/0</span>
+        <button id="willpower-increase" type="button" class="resource-btn">+</button>
+        <button id="willpower-reset" type="button" class="resource-btn reset">Reset</button>
+      </div>
+    </div>
+  </div>
 
   <hr />
 

@@ -19,6 +19,9 @@ class DiceTools extends Application {
 
   activateListeners(html) {
     super.activateListeners(html);
+    
+    // Update resource displays when the app opens or re-renders
+    this.updateResourceDisplays(html);
 
     html.find("#set-initiative").click(async ev => {
       ev.preventDefault();
@@ -220,5 +223,75 @@ class DiceTools extends Application {
         default: "no"
       }).render(true);
     });
+
+    // --- Resource Manager Handlers ---
+    const resourceHandler = (resource, change) => async (ev) => {
+      ev.preventDefault();
+      const token = canvas.tokens.controlled[0];
+      if (!token || !token.actor) return ui.notifications.warn("Please select a token to modify resources.");
+
+      const actor = token.actor;
+      const current = actor.system.resources[resource].current;
+      const max = actor.system.resources[resource].max;
+      const total = actor.system.resources[resource].total;
+      let newValue = current + change;
+      newValue = Math.max(0, Math.min(newValue, max)); // Clamp between 0 and max (temporary more than total is ok)
+
+      await actor.update({ [`system.resources.${resource}.current`]: newValue });
+      this.updateResourceDisplays(html);
+      ui.notifications.info(`${token.name} ${resource}: ${newValue}/${total}`);
+    };
+
+    html.find("#health-increase").click(resourceHandler("health", 1));
+    html.find("#health-decrease").click(resourceHandler("health", -1));
+    html.find("#health-reset").click(async (ev) => {
+      ev.preventDefault();
+      const token = canvas.tokens.controlled[0];
+      if (!token || !token.actor) return ui.notifications.warn("Please select a token.");
+      const total = token.actor.system.resources.health.total;
+      await token.actor.update({ "system.resources.health.current": total });
+      this.updateResourceDisplays(html);
+      ui.notifications.info(`${token.name} health reset to ${total}.`);
+    });
+
+    html.find("#chi-increase").click(resourceHandler("chi", 1));
+    html.find("#chi-decrease").click(resourceHandler("chi", -1));
+    html.find("#chi-reset").click(async (ev) => {
+      ev.preventDefault();
+      const token = canvas.tokens.controlled[0];
+      if (!token || !token.actor) return ui.notifications.warn("Please select a token.");
+      const total = token.actor.system.resources.chi.total;
+      await token.actor.update({ "system.resources.chi.current": total });
+      this.updateResourceDisplays(html);
+      ui.notifications.info(`${token.name} chi reset to ${total}.`);
+    });
+
+    html.find("#willpower-increase").click(resourceHandler("willpower", 1));
+    html.find("#willpower-decrease").click(resourceHandler("willpower", -1));
+    html.find("#willpower-reset").click(async (ev) => {
+      ev.preventDefault();
+      const token = canvas.tokens.controlled[0];
+      if (!token || !token.actor) return ui.notifications.warn("Please select a token.");
+      const total = token.actor.system.resources.willpower.total;
+      await token.actor.update({ "system.resources.willpower.current": total });
+      this.updateResourceDisplays(html);
+      ui.notifications.info(`${token.name} willpower reset to ${total}.`);
+    });
+  }
+
+  updateResourceDisplays(html) {
+    const token = canvas.tokens.controlled[0];
+    if (!token || !token.actor) {
+      html.find(".resource-value").text("—/—");
+      return;
+    }
+
+    const health = token.actor.system.resources.health;
+    const chi = token.actor.system.resources.chi;
+    const willpower = token.actor.system.resources.willpower;
+
+    html.find("#health-display").text(`${health.current}/${health.total}`);
+    html.find("#chi-display").text(`${chi.current}/${chi.total}`);
+    html.find("#willpower-display").text(`${willpower.current}/${willpower.total}`);
   }
 }

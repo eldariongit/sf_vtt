@@ -2,7 +2,7 @@ class DiceToolsButton extends Application {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       id: "dice-tools-button",
-      title: "Dice Tools",
+      title: game.i18n.localize("SFVTT.Tools"),
       template: "systems/sf_vtt/templates/apps/utils-app-btn.html",
       popOut: true,
       resizable: false,

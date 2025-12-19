@@ -2,7 +2,7 @@ class DiceTools extends Application {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       id: "dice-tools",
-      title: "Tools",
+      title: game.i18n.localize("SFVTT.Tools"),
       template: "systems/sf_vtt/templates/apps/utils-app.html",
       width: 320,
       height: "auto",
@@ -35,22 +35,22 @@ class DiceTools extends Application {
     html.find("#set-initiative").click(async ev => {
       ev.preventDefault();
       let init = parseFloat(html.find("#initiative-value").val());
-      if (isNaN(init)) return ui.notifications.warn("Please enter a valid number.");
+      if (isNaN(init)) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.PleaseEnterValidNumber"));
 
       const combat = game.combat;
-      if (!combat) return ui.notifications.warn("No active combat.");
+      if (!combat) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.NoActiveCombat"));
 
       // Get selected tokens
       const selected = canvas.tokens.controlled;
       if (!selected.length) {
-        return ui.notifications.warn("Please select at least one token.");
+        return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.SelectAtLeastOneToken"));
       }
 
       // Apply initiative to each selected token’s combatant
       for (let token of selected) {
         const combatant = combat.getCombatantByToken(token.id);
         if (!combatant) {
-          ui.notifications.warn(`${token.name} is not in the combat tracker.`);
+          ui.notifications.warn(game.i18n.format("SFVTT.NotInCombat", { name: token.name }));
           continue;
         }
 
@@ -62,7 +62,7 @@ class DiceTools extends Application {
         // Random d10 (0-9)
         tokenInit = tokenInit + Math.floor(Math.random() * 10) / 1000;
         await combat.setInitiative(combatant.id, tokenInit);
-        ui.notifications.info(`${token.name}: Initiative set to ${tokenInit}.`);
+        ui.notifications.info(game.i18n.format("SFVTT.Info.InitiativeSet", { name: token.name, value: tokenInit }));
       }
     });
 
@@ -71,24 +71,24 @@ class DiceTools extends Application {
       ev.preventDefault();
 
       const combat = game.combat;
-      if (!combat) return ui.notifications.warn("No active combat.");
+      if (!combat) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.NoActiveCombat"));
 
       const actedIcon = "systems/sf_vtt/assets/icons/fist.png";
 
       const selected = canvas.tokens.controlled;
       if (!selected.length) {
-        return ui.notifications.warn("Please select at least one token.");
+        return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.SelectAtLeastOneToken"));
       }
 
       for (let token of selected) {
         if (!game.user.isGM && !token.isOwner) {
-          ui.notifications.warn(`You do not have permission to mark ${token.name}.`);
+          ui.notifications.warn(game.i18n.format("SFVTT.Utils.NoPermissionMark", { name: token.name }));
           continue;
         }
 
         const combatant = combat.getCombatantByToken(token.id);
         if (!combatant) {
-          ui.notifications.warn(`${token.name} is not in the combat tracker.`);
+          ui.notifications.warn(game.i18n.format("SFVTT.NotInCombat", { name: token.name }));
           continue;
         }
 
@@ -96,7 +96,7 @@ class DiceTools extends Application {
         if (combatant.img === actedIcon) {
           mark = false;
         } else {
-          ui.notifications.info(`${token.name} marked as acted.`);
+          ui.notifications.info(game.i18n.format("SFVTT.MarkedAsActed", { name: token.name }));
         }
 
         const activeGm = game.users.activeGM;
@@ -166,11 +166,9 @@ class DiceTools extends Application {
       // `;
       let msg = "";
       if (successes > 0) msg += "🤜 ";
-      // if (successes == 0) msg += "🤜";
       if (successes < 0) msg += "💔 ";
       msg += successes;
-      if (successes == 1 || successes == -1) msg += " success"
-      else msg += " successes";
+      msg += " " + game.i18n.localize(Math.abs(successes) === 1 ? "SFVTT.Roll.SuccessSingular" : "SFVTT.Roll.SuccessPlural");
 
       const content = `<div class="dice-roll">
         ${elem[0].outerHTML}
@@ -181,7 +179,7 @@ class DiceTools extends Application {
       ChatMessage.create({
         user: game.user.id,
         speaker: ChatMessage.getSpeaker(),
-        flavor: `${numDice}d10 vs ${target}`,
+        flavor: game.i18n.format("SFVTT.Roll.Flavor", { num: numDice, target: target }),
         content: content
       });      
     });
@@ -189,9 +187,9 @@ class DiceTools extends Application {
     // --- Reset All Initiatives (GM only) ---
     html.find("#reset-initiatives").click(async ev => {
       ev.preventDefault();
-      if (!game.user.isGM) return ui.notifications.warn("Only the GM can reset initiatives.");
+      if (!game.user.isGM) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.OnlyGMReset"));
       const combat = game.combat;
-      if (!combat) return ui.notifications.warn("No active combat to reset.");
+      if (!combat) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.NoActiveCombat"));
 
       for (let combatant of combat.combatants) {
         await combat.setInitiative(combatant.id, null);
@@ -199,34 +197,34 @@ class DiceTools extends Application {
       }
       await combat.nextRound();
 
-      ui.notifications.info("All combatant initiatives have been reset.");
+      ui.notifications.info(game.i18n.localize("SFVTT.Utils.InitiativesReset"));
     });
 
     // End combat
     html.find("#end-combat").click(async ev => {
       ev.preventDefault();
-      if (!game.user.isGM) return ui.notifications.warn("Only the GM can end combat.");
+      if (!game.user.isGM) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.OnlyGMReset"));
 
       // Make sure there's an active combat
       const combat = game.combat;
-      if (!combat) return ui.notifications.warn("No active combat to end.");
+      if (!combat) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.NoActiveCombat"));
 
       // Ask for confirmation
       new Dialog({
-        title: "End Combat?",
-        content: "<p>Do you really want to end the current combat?</p>",
+        title: game.i18n.localize("SFVTT.Dialog.EndCombat.Title"),
+        content: game.i18n.localize("SFVTT.Dialog.EndCombat.Content"),
         buttons: {
           yes: {
             icon: "<i class='fas fa-check'></i>",
-            label: "Yes, end it",
+            label: game.i18n.localize("SFVTT.Dialog.YesEndIt"),
             callback: async () => {
               await combat.endCombat(); // Foundry method to end current combat
-              ui.notifications.info("Combat has been finished.");
+              ui.notifications.info(game.i18n.localize("SFVTT.Info.CombatFinished"));
             }
           },
           no: {
             icon: "<i class='fas fa-times'></i>",
-            label: "Cancel"
+            label: game.i18n.localize("SFVTT.Dialog.Cancel")
           }
         },
         default: "no"
@@ -237,7 +235,7 @@ class DiceTools extends Application {
     const resourceHandler = (resource, change) => async (ev) => {
       ev.preventDefault();
       const token = canvas.tokens.controlled[0];
-      if (!token || !token.actor) return ui.notifications.warn("Please select a token to modify resources.");
+      if (!token || !token.actor) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.SelectTokenModifyResources"));
 
       const actor = token.actor;
       const current = actor.system.resources[resource].current;
@@ -256,11 +254,11 @@ class DiceTools extends Application {
     html.find("#health-reset").click(async (ev) => {
       ev.preventDefault();
       const token = canvas.tokens.controlled[0];
-      if (!token || !token.actor) return ui.notifications.warn("Please select a token.");
+      if (!token || !token.actor) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.PleaseSelectToken"));
       const total = token.actor.system.resources.health.total;
       await token.actor.update({ "system.resources.health.current": total });
       this.updateResourceDisplays(html);
-      ui.notifications.info(`${token.name} health reset to ${total}.`);
+      ui.notifications.info(game.i18n.format("SFVTT.Info.HealthReset", { name: token.name, total: total }));
     });
 
     html.find("#chi-increase").click(resourceHandler("chi", 1));
@@ -268,11 +266,11 @@ class DiceTools extends Application {
     html.find("#chi-reset").click(async (ev) => {
       ev.preventDefault();
       const token = canvas.tokens.controlled[0];
-      if (!token || !token.actor) return ui.notifications.warn("Please select a token.");
+      if (!token || !token.actor) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.PleaseSelectToken"));
       const total = token.actor.system.resources.chi.total;
       await token.actor.update({ "system.resources.chi.current": total });
       this.updateResourceDisplays(html);
-      ui.notifications.info(`${token.name} chi reset to ${total}.`);
+      ui.notifications.info(game.i18n.format("SFVTT.Info.ChiReset", { name: token.name, total: total }));
     });
 
     html.find("#willpower-increase").click(resourceHandler("willpower", 1));
@@ -280,11 +278,11 @@ class DiceTools extends Application {
     html.find("#willpower-reset").click(async (ev) => {
       ev.preventDefault();
       const token = canvas.tokens.controlled[0];
-      if (!token || !token.actor) return ui.notifications.warn("Please select a token.");
+      if (!token || !token.actor) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.PleaseSelectToken"));
       const total = token.actor.system.resources.willpower.total;
       await token.actor.update({ "system.resources.willpower.current": total });
       this.updateResourceDisplays(html);
-      ui.notifications.info(`${token.name} willpower reset to ${total}.`);
+      ui.notifications.info(game.i18n.format("SFVTT.Info.WillpowerReset", { name: token.name, total: total }));
     });
   }
 

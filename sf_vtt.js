@@ -4,7 +4,7 @@ import sfCharacterSheet from "./modules/sheets/sfCharacterSheet.js";
 import sfNpcSheet from "./modules/sheets/sfNpcSheet.js";
 
 Hooks.once("init", async () => {
-    console.log("SFVTT | Initializing Street Fighter Core system");
+    console.log(game.i18n.localize("SFVTT.Init.Initializing"));
 
     // Setting up the global configuration object
     CONFIG.SFVTT = SFVTT;
@@ -41,7 +41,7 @@ Hooks.once("ready", () => {
         document.body.appendChild(div);
     }
 
-    console.log("SF_VTT | Ready. GM status:", game.user.isGM);
+    console.log(game.i18n.format("SFVTT.Init.ReadyGM"), game.user.isGM);
 
     if (!game.user.isGM) {
         return;

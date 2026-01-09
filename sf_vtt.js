@@ -53,12 +53,7 @@ Hooks.once("ready", () => {
 async function markActedHandler(data, {timeout}) {
     const combatant = game.combat.getCombatantByToken(data.tokenId);
     if (combatant) {
-        //await combatant.update({ img: data.icon });
-        if (data.mark) {
-            await combatant.update({ img: "systems/sf_vtt/assets/icons/fist.png" });
-        } else {
-            await combatant.update({ img: "" });
-        }
+        await combatant.update({ img: data.icon });
     }
     return {};
 }

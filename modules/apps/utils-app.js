@@ -66,47 +66,16 @@ class DiceTools extends Application {
       }
     });
 
+    // Mark selected tokens as blocking this round
+    html.find("#mark-blocking").click(async ev => {
+        ev.preventDefault();
+        this.setIcon("systems/sf_vtt/assets/icons/block.png");
+    });
+    
     // Mark selected tokens as having acted this round
     html.find("#mark-acted").click(async ev => {
       ev.preventDefault();
-
-      const combat = game.combat;
-      if (!combat) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.NoActiveCombat"));
-
-      const actedIcon = "systems/sf_vtt/assets/icons/fist.png";
-
-      const selected = canvas.tokens.controlled;
-      if (!selected.length) {
-        return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.SelectAtLeastOneToken"));
-      }
-
-      for (let token of selected) {
-        if (!game.user.isGM && !token.isOwner) {
-          ui.notifications.warn(game.i18n.format("SFVTT.Utils.NoPermissionMark", { name: token.name }));
-          continue;
-        }
-
-        const combatant = combat.getCombatantByToken(token.id);
-        if (!combatant) {
-          ui.notifications.warn(game.i18n.format("SFVTT.NotInCombat", { name: token.name }));
-          continue;
-        }
-
-        let mark = true;
-        if (combatant.img === actedIcon) {
-          mark = false;
-        } else {
-          ui.notifications.info(game.i18n.format("SFVTT.MarkedAsActed", { name: token.name }));
-        }
-
-        const activeGm = game.users.activeGM;
-        const queryData = {
-          tokenId: token.id,
-          mark: mark
-
-        };
-        const queryValue = await activeGm.query("sf_vtt.markActed", queryData, { timeout: 5 * 1000 });
-      }
+      this.setIcon("systems/sf_vtt/assets/icons/fist.png");
     });
 
     // --- Custom Dice Roller ---
@@ -308,5 +277,43 @@ class DiceTools extends Application {
       Hooks.off("controlToken", this._onControlToken);
     }
     return super.close(options);
+  }
+
+  async setIcon(actedIcon) {
+    const combat = game.combat;
+    if (!combat) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.NoActiveCombat"));
+
+    const selected = canvas.tokens.controlled;
+    if (!selected.length) {
+      return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.SelectAtLeastOneToken"));
+    }
+
+    for (let token of selected) {
+      if (!game.user.isGM && !token.isOwner) {
+        ui.notifications.warn(game.i18n.format("SFVTT.Utils.NoPermissionMark", { name: token.name }));
+        continue;
+      }
+
+      const combatant = combat.getCombatantByToken(token.id);
+      if (!combatant) {
+        ui.notifications.warn(game.i18n.format("SFVTT.NotInCombat", { name: token.name }));
+        continue;
+      }
+
+      let mark = true;
+      if (combatant.img === actedIcon) {
+        mark = false;
+      } else {
+        ui.notifications.info(game.i18n.format("SFVTT.MarkedAsActed", { name: token.name }));
+      }
+
+      const activeGm = game.users.activeGM;
+      const queryData = {
+        tokenId: token.id,
+        mark: mark,
+        icon: mark ? actedIcon : ""
+      };
+      const queryValue = await activeGm.query("sf_vtt.markActed", queryData, { timeout: 5 * 1000 });
+    }
   }
 }

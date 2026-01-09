@@ -67,6 +67,17 @@ a.dice-roller-button {
   transition: background-color 0.2s;
 }
 
+.initiative-buttons {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.initiative-buttons .resource-btn {
+  flex: 1;
+  min-width: 70px;
+}
+
 .resource-btn:hover {
   background: rgba(70, 70, 70, 0.9);
 }

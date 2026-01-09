@@ -29,6 +29,37 @@ Hooks.once("init", async () => {
 
     // Register additional Handlebar Helpers
     registerHandlebarsHelpers();
+
+    const availableStatusEffects = [
+        { id: "unconscious", label: "Unconscious", icon: "icons/svg/unconscious.svg" },
+        { id: "stun", label: "Dizzy", icon: "icons/svg/daze.svg" },
+        { id: "prone", label: "Knockdown", icon: "icons/svg/falling.svg" },
+        { id: "disease", label: "Botch", icon: "icons/svg/radiation.svg" },
+        { id: "blind", label: "Blind", icon: "icons/svg/blind.svg" },
+        { id: "curse", label: "Cursed", icon: "icons/svg/eye.svg" },
+        { id: "downgrade", label: "Weakened", icon: "icons/svg/downgrade.svg" }
+    ];
+
+    // Adapt the status effects
+    try {
+        // First, give listeners a chance to mutate the existing array in-place
+        Hooks.callAll("sfvtt.modifyStatusEffects", CONFIG.statusEffects);
+
+        for (let i = CONFIG.statusEffects.length - 1; i >= 0; i--) {
+            const effect = CONFIG.statusEffects[i];
+            const match = availableStatusEffects.find(e => e.id === effect.id);
+            if (match) {
+                CONFIG.statusEffects[i].icon = match.icon;
+                CONFIG.statusEffects[i].image = match.icon;
+                CONFIG.statusEffects[i].label = match.label;
+                CONFIG.statusEffects[i].name = match.label;
+            } else {
+                CONFIG.statusEffects.splice(i, 1);
+            }
+        }
+    } catch (err) {
+        console.error("Error running sfvtt status-effects hooks:", err);
+    }
 });
 
 Hooks.once("ready", () => {

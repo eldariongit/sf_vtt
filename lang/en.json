@@ -159,7 +159,8 @@
       "grab": "Grab",
       "ignoresBlocks": "Ignores Blocks",
       "block": "Block",
-      "soak": "Soak / +2 Speed",
+      "soak": "Soak",
+      "speedBonus": "+2 Speed",
       "movement": "Movement"
     },
     "maneuvers": "Maneuvers",

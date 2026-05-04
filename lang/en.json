@@ -36,6 +36,9 @@
   },
 
   "sf": {
+    "export": {
+      "pdf": "Export to PDF"
+    },
     "details": {
       "name": "Name",
       "style": "Style",

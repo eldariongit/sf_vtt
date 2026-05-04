@@ -1,3 +1,5 @@
+import { exportElementAsPdf } from "../pdf-export.js";
+
 const api = foundry.applications.api;
 const sheets = foundry.applications.sheets;
 
@@ -8,7 +10,7 @@ export default class sfCharacterSheet extends api.HandlebarsApplicationMixin(she
         tag: "form",
         classes: [ "sf_vtt", "sheet", "actor", "characterSheet"],
         actions: {
-
+            "export-pdf": this._onExportPDF
         },
         form: {
             submitOnChange: true,
@@ -78,17 +80,18 @@ export default class sfCharacterSheet extends api.HandlebarsApplicationMixin(she
 
         const itemQuantities = this.element.querySelectorAll('.tabs .item')
         for (const input of itemQuantities) {
-            // keep in mind that if your callback is a named function instead of an arrow function expression
-            // you'll need to use `bind(this)` to maintain context
             input.addEventListener("click", (e) => {
-                //e.preventDefault();
-                //e.stopImmediatePropagation();
                 const tabName = $(e.currentTarget).data('tab');
                 if (tabName) {
                     this._activeTab = tabName;
                     sessionStorage.setItem(`activeTab-${this.actor.id}`, tabName);
                 }
             })
+        }
+
+        const exportBtn = this.element.querySelector('.export-pdf-btn');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', this._onExportPDF.bind(this));
         }
 
         // Restore active tab after rendering
@@ -108,6 +111,24 @@ export default class sfCharacterSheet extends api.HandlebarsApplicationMixin(she
         const tabElement = tabs.querySelector(`[data-tab="${tabName}"]`);
         if (tabElement) {
             tabElement.click(); // Simulate tab click to switch
+        }
+    }
+
+    async _onExportPDF(event) {
+        event.preventDefault();
+
+        ui.notifications.info(`Exporting PDF for ${this.actor.name}...`);
+        console.log('SFVTT export-pdf:', this.actor.name, this.actor.system);
+
+        const source = this.element;
+        const filename = `${this.actor.name}.pdf`;
+
+        try {
+            await exportElementAsPdf(source, filename);
+            ui.notifications.info(`PDF export complete: ${this.actor.name}`);
+        } catch (error) {
+            console.error('SFVTT export-pdf failed:', error);
+            ui.notifications.error(`PDF export failed: ${error.message || error}`);
         }
     }
 }

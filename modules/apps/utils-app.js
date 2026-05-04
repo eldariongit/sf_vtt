@@ -69,6 +69,19 @@ class DiceTools extends Application {
     // Mark selected tokens as blocking this round
     html.find("#mark-blocking").click(async ev => {
         ev.preventDefault();
+        const token = canvas.tokens.controlled[0];
+        if (!token || !token.actor) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.SelectTokenModifyResources"));
+
+        const blockValue = token.actor.system.techniques.block.value;
+        if (blockValue <= 0) return ui.notifications.warn("This combatant has not learned block.");
+
+        const blockSpeed = token.actor.system.attributes.dexterity.value + 4;
+        
+        // Set the initiative input field and trigger the set-initiative button
+        html.find("#initiative-value").val(blockSpeed);
+        html.find("#set-initiative").click();
+        
+        // Also mark the blocking icon
         this.setIcon("systems/sf_vtt/assets/icons/block.png");
     });
     
@@ -259,6 +272,7 @@ class DiceTools extends Application {
     const token = canvas.tokens.controlled[0];
     if (!token || !token.actor) {
       html.find(".resource-value").text("—/—");
+      html.find("#mark-blocking").prop("disabled", true);
       return;
     }
 
@@ -269,6 +283,11 @@ class DiceTools extends Application {
     html.find("#health-display").text(`${health.current}/${health.total}`);
     html.find("#chi-display").text(`${chi.current}/${chi.total}`);
     html.find("#willpower-display").text(`${willpower.current}/${willpower.total}`);
+
+    // Disable mark-blocking button if combatant hasn't learned block
+    const blockValue = token.actor.system.techniques.block.value;
+    const isBlockDisabled = blockValue <= 0;
+    html.find("#mark-blocking").prop("disabled", isBlockDisabled);
   }
 
   close(options) {

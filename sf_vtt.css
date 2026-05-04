@@ -280,3 +280,82 @@
   width: 130px;
   object-fit: contain;
 }
+
+/* Remove highlighting from combat tracker for current combatant */
+/*.combat-tracker .combatant.active,
+.combat-tracker .combatant.active *,
+.combat-tracker .combatant.current,
+.combat-tracker .combatant.current * {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}*/
+
+.combat-sidebar .combat-tracker .combatant.active {
+  background: transparent !important;
+}
+
+.combat-sidebar .combat-tracker .combatant.active::before {
+  border: none !important;
+}
+
+/* Replace the initiative d20 icon with a question mark and make the button inactive */
+.combat-tracker .combatant-control.roll[data-action="rollInitiative"] {
+  background-image: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  color: currentColor !important;
+  cursor: default !important;
+  pointer-events: none !important;
+  opacity: 0.5 !important;
+}
+
+.combat-tracker .combatant-control.roll[data-action="rollInitiative"]::before,
+.combat-tracker .combatant-control.roll[data-action="rollInitiative"]::after {
+  display: none !important;
+}
+
+.combat-tracker .combatant-control.roll[data-action="rollInitiative"]::after {
+  content: "?" !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  font-size: 1.4em !important;
+}
+/*
+.combat-tracker .combatant.active .combatant-name,
+.combat-tracker .combatant.current .combatant-name,
+.combat-tracker .combatant.active .combatant-control,
+.combat-tracker .combatant.current .combatant-control {
+  border-color: transparent !important;
+}*/
+
+/* Remove highlighting from tokens for current combatant */
+/*.token.combatant,
+.token.active,
+.token.current {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}*/
+
+/*.token.combatant::before,
+.token.combatant::after,
+.token.active::before,
+.token.active::after,
+.token.current::before,
+.token.current::after,
+.token.combatant .combatant-indicator,
+.token.active .combatant-indicator,
+.token.current .combatant-indicator,
+.token.combatant .token-status-effects,
+.token.active .token-status-effects,
+.token.current .token-status-effects {
+  display: none !important;
+}*/
+

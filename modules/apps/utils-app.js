@@ -14,6 +14,7 @@ class DiceTools extends Application {
   getData(options) {
     const data = super.getData(options);
     data.isGM = game.user.isGM;
+    data.initiativeState = game.combat ? game.combat.getFlag("sf_vtt", "initiativeVisibility") || "hidden" : "hidden";
     return data;
   }
 
@@ -46,7 +47,7 @@ class DiceTools extends Application {
         return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.SelectAtLeastOneToken"));
       }
 
-      // Apply initiative to each selected token’s combatant
+      const entries = [];
       for (let token of selected) {
         const combatant = combat.getCombatantByToken(token.id);
         if (!combatant) {
@@ -61,9 +62,44 @@ class DiceTools extends Application {
         tokenInit = tokenInit + actor.system.attributes.perception.value / 100;
         // Random d10 (0-9)
         tokenInit = tokenInit + Math.floor(Math.random() * 10) / 1000;
-        await combat.setInitiative(combatant.id, tokenInit);
-        ui.notifications.info(game.i18n.format("SFVTT.Info.InitiativeSet", { name: token.name, value: tokenInit }));
+
+        entries.push({ 
+          tokenId: token.id,
+          initiative: tokenInit,
+          name: token.name });
       }
+
+      if (!entries.length) {
+        return;
+      }
+
+      const visibility = combat.getFlag("sf_vtt", "initiativeVisibility") || "hidden";
+      if (visibility === "hidden") {
+        //if (typeof sfvttSubmitHiddenInitiatives === "function") {
+          await sfvttSubmitHiddenInitiatives(combat, entries);
+          ui.notifications.info(game.i18n.localize("SFVTT.Info.InitiativeHiddenSubmitted"));
+        //}
+        return;
+      }
+
+      for (const entry of entries) {
+        await combat.setInitiative(entry.combatantId, entry.initiative);
+        ui.notifications.info(game.i18n.format("SFVTT.Info.InitiativeSet", { name: entry.name, value: entry.initiative }));
+      }
+    });
+
+    html.find("#reveal-initiative").click(async ev => {
+      ev.preventDefault();
+      if (!game.user.isGM) {
+        return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.OnlyGMReset"));
+      }
+      const combat = game.combat;
+      if (!combat) {
+        return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.NoActiveCombat"));
+      }
+      await sfvttRevealHiddenInitiatives(combat);
+      ui.notifications.info(game.i18n.localize("SFVTT.Info.InitiativeRevealed"));
+      this.render();
     });
 
     // Mark selected tokens as blocking this round
@@ -169,9 +205,13 @@ class DiceTools extends Application {
     // --- Reset All Initiatives (GM only) ---
     html.find("#reset-initiatives").click(async ev => {
       ev.preventDefault();
-      if (!game.user.isGM) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.OnlyGMReset"));
+      if (!game.user.isGM) {
+        return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.OnlyGMReset"));
+      }
       const combat = game.combat;
-      if (!combat) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.NoActiveCombat"));
+      if (!combat) {
+        return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.NoActiveCombat"));
+      }
 
       for (let combatant of combat.combatants) {
         await combat.setInitiative(combatant.id, null);
@@ -300,7 +340,9 @@ class DiceTools extends Application {
 
   async setIcon(actedIcon) {
     const combat = game.combat;
-    if (!combat) return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.NoActiveCombat"));
+    if (!combat) {
+      return ui.notifications.warn(game.i18n.localize("SFVTT.Utils.NoActiveCombat"));
+    }
 
     const selected = canvas.tokens.controlled;
     if (!selected.length) {

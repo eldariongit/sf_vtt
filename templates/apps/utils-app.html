@@ -66,9 +66,13 @@
   <hr />
 
   <!-- Reset Initiatives (GM only) -->
+  <div class="initiative-status">
+    <strong>Initiative State:</strong> {{initiativeState}}
+  </div>
   {{#if isGM}}
   <div class="reset-initiatives">
     <h3>Combat Management</h3>
+    <button id="reveal-initiative" type="button" class="gm-only">Reveal Initiative</button>
     <button id="reset-initiatives" type="button" class="gm-only">Reset All Initiatives</button>
     <button id="end-combat" type="button" class="gm-only">End combat</button>
   </div>

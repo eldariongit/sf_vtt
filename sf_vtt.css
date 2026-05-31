@@ -327,6 +327,31 @@
   height: 100% !important;
   font-size: 1.4em !important;
 }
+
+.combat-sidebar .combat-tracker.hidden-initiative .combatant-initiative .value {
+  color: transparent !important;
+  position: relative !important;
+}
+
+.combat-sidebar .combat-tracker.hidden-initiative .combatant-initiative .value::after {
+  content: "?";
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+  color: #999;
+}
+
+.combat-sidebar .combat-tracker.hidden-initiative .combatant.pending-init .combatant-initiative .value::after {
+  content: "!";
+  color: #6fcf97;
+}
+
+.combat-sidebar .combat-tracker.hidden-initiative .combatant.pending-init .combatant-control.roll[data-action="rollInitiative"]::after {
+  content: "!" !important;
+  color: #6fcf97 !important;
+}
 /*
 .combat-tracker .combatant.active .combatant-name,
 .combat-tracker .combatant.current .combatant-name,

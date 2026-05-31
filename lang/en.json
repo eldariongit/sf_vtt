@@ -12,6 +12,8 @@
   "SFVTT.Utils.NoPermissionMark": "You do not have permission to mark {name}.",
   "SFVTT.MarkedAsActed": "{name} marked as acted.",
   "SFVTT.Info.InitiativeSet": "{name}: Initiative set to {value}.",
+  "SFVTT.Info.InitiativeHiddenSubmitted": "Initiative hidden and submitted to the GM.",
+  "SFVTT.Info.InitiativeRevealed": "Initiative revealed to all participants.",
   "SFVTT.Utils.OnlyGMReset": "Only the GM can reset initiatives.",
   "SFVTT.Utils.InitiativesReset": "All combatant initiatives have been reset.",
   "SFVTT.Dialog.EndCombat.Title": "End Combat?",

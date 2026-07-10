@@ -199,30 +199,40 @@ Hooks.on("updateCombat", async (combat, changed) => {
     }
   }
 
-  // Only act when the round value changes
-  if (changed && typeof changed.round != "undefined") {
-    const actedIcon = "icons/svg/clock.svg";
-    try {
-      for (const combatant of combat.combatants) {
-        const token = canvas.tokens.get(combatant.tokenId);
-        if (!token || !token.document) continue;
-        const effects = token.document.effects || [];
-        if (effects.includes(actedIcon)) {
-          token.toggleEffect(actedIcon); // toggleEffect will remove the icon if present
-        }
-      }
-    } catch (err) {
-      console.error("Error clearing acted icons on round change:", err);
-    }
+  // Everything below only applies when the round actually advances. This must
+  // stay gated on changed.round: it used to run on every updateCombat event,
+  // which meant re-hiding initiative and wiping the pending map re-triggered
+  // itself as soon as anyone (or our own reveal logic) touched the combat's
+  // flags, immediately undoing a reveal or a post-reveal initiative change.
+  if (!changed || typeof changed.round === "undefined") {
+    return;
   }
-  
+
+  const actedIcon = "icons/svg/clock.svg";
+  try {
+    for (const combatant of combat.combatants) {
+      const token = canvas.tokens.get(combatant.tokenId);
+      if (!token || !token.document) continue;
+      const effects = token.document.effects || [];
+      if (effects.includes(actedIcon)) {
+        token.toggleEffect(actedIcon); // toggleEffect will remove the icon if present
+      }
+    }
+  } catch (err) {
+    console.error("Error clearing acted icons on round change:", err);
+  }
+
   if (!game.user.isGM) {
     return;
   }
 
   await Promise.all([
     sfvttSetCombatVisibility(combat, "hidden"),
-    sfvttClearInitiativeMap(combat)
+    sfvttClearInitiativeMap(combat),
+    // Reset every combatant's actual initiative, not just the pending map,
+    // so a combatant who doesn't submit this round doesn't reveal with a
+    // stale value left over from a previous round.
+    combat.updateEmbeddedDocuments("Combatant", combat.combatants.map(c => ({ _id: c.id, initiative: null })))
   ]);
 
   if (ui.combat && ui.combat.rendered) {

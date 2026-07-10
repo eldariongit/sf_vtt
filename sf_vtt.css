@@ -328,27 +328,22 @@
   display: none !important;
 }
 
-.combat-sidebar .combat-tracker .combatant {
-  position: relative;
-}
-
 .combat-sidebar .combat-tracker .combatant .sfvtt-init-marker {
-  display: none;
+  display: none !important;
 }
 
 .combat-sidebar .combat-tracker.hidden-initiative .combatant .sfvtt-init-marker {
-  display: flex !important;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 6px;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  width: 1.6em;
+  flex: 0 0 auto;
+  min-width: 1.6em;
+  height: 1.6em;
+  margin-left: 4px;
   font-size: 1.4em;
+  font-weight: bold;
+  line-height: 1;
   color: #999;
-  pointer-events: none;
-  z-index: 2;
 }
 
 .combat-sidebar .combat-tracker.hidden-initiative .combatant.pending-init .sfvtt-init-marker {

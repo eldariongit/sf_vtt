@@ -1,7 +1,6 @@
 const SFVTT_INIT_FLAG_SCOPE = "sf_vtt";
 const SFVTT_INIT_STATE_KEY = "initiativeVisibility";
 const SFVTT_INIT_MAP_KEY = "initiativeMap";
-const SFVTT_INIT_PENDING_KEY = "initiativePending";
 const SFVTT_SOCKET_EVENT = "system.sf_vtt";
 const SFVTT_SOCKET_TYPE_SECRET_INITIATIVE = "sf_vtt.secretInitiative";
 
@@ -27,15 +26,9 @@ async function sfvttAddHiddenInitiativeEntries(combat, entries) {
   if (!combat || !entries?.length) {
     return;
   }
-  console.log("Adding hidden initiative entries to combat:", entries);
   const map = combat.getFlag(SFVTT_INIT_FLAG_SCOPE, SFVTT_INIT_MAP_KEY) || {};
   for (const entry of entries) {
-    map[entry.tokenId] = entry.initiative;
-    const combatant = combat.getCombatantByToken(entry.tokenId);
-    if (combatant) {
-      console.log(`Marking combatant ${combatant.name} as having chosen initiative (pending)`);
-      await combatant.setFlag(SFVTT_INIT_FLAG_SCOPE, SFVTT_INIT_PENDING_KEY, true);
-    }
+    map[entry.combatantId] = entry.initiative;
   }
   await combat.setFlag(SFVTT_INIT_FLAG_SCOPE, SFVTT_INIT_MAP_KEY, map);
 }
@@ -63,18 +56,23 @@ async function sfvttRevealHiddenInitiatives(combat) {
   const entries = Object.entries(map);
   if (!entries.length) {
     await sfvttSetCombatVisibility(combat, "revealed");
+    if (ui.combat && ui.combat.rendered) {
+      ui.combat.render();
+    }
     return;
   }
-  for (const [tokenId, initiative] of entries) {
-    const combatant = combat.getCombatantByToken(tokenId);
+  for (const [combatantId, initiative] of entries) {
+    const combatant = combat.combatants.get(combatantId);
     if (!combatant) {
       continue;
     }
     await combat.setInitiative(combatant.id, initiative);
-    await combatant.unsetFlag(SFVTT_INIT_FLAG_SCOPE, SFVTT_INIT_PENDING_KEY);
   }
   await combat.setFlag(SFVTT_INIT_FLAG_SCOPE, SFVTT_INIT_MAP_KEY, {});
   await sfvttSetCombatVisibility(combat, "revealed");
+  if (ui.combat && ui.combat.rendered) {
+    ui.combat.render();
+  }
 }
 
 function sfvttHandleSocketMessage(data) {
@@ -162,7 +160,8 @@ Hooks.on("renderCombatTracker", (app, html) => {
   }
   const $html = html instanceof HTMLElement ? $(html) : html;
   const state = sfvttGetCombatVisibility(combat);
-  $html.toggleClass("hidden-initiative", state === "hidden");
+  const hidden = state === "hidden";
+  $html.toggleClass("hidden-initiative", hidden);
   const map = combat.getFlag(SFVTT_INIT_FLAG_SCOPE, SFVTT_INIT_MAP_KEY) || {};
 
   $html.find(".combatant").each((_, el) => {
@@ -171,9 +170,21 @@ Hooks.on("renderCombatTracker", (app, html) => {
     if (!combatantId) {
       return;
     }
-    const pending = !!map[combatantId];
+    const pending = Object.prototype.hasOwnProperty.call(map, combatantId);
     $row.toggleClass("pending-init", pending);
-    console.log(`Combatant ${combatantId} pending initiative:`, pending);
+
+    // Foundry only renders the native initiative value/roll control for a
+    // combatant's owner (or the GM). Since every client must see the same
+    // masked "?" / "!" state regardless of who owns the combatant, we add
+    // our own marker element here instead of relying on the native controls.
+    if (hidden) {
+      let $marker = $row.find(".sfvtt-init-marker");
+      if (!$marker.length) {
+        $marker = $(`<div class="sfvtt-init-marker"></div>`);
+        $row.append($marker);
+      }
+      $marker.text(pending ? "!" : "?");
+    }
   });
 });
 
@@ -181,6 +192,13 @@ Hooks.on("renderCombatTracker", (app, html) => {
 // This keeps the per-round "acted" markers in sync: marks are added via the
 // "Mark Acted" button and removed automatically at the next round.
 Hooks.on("updateCombat", async (combat, changed) => {
+  // Force re-render if initiative visibility state changed (for all clients)
+  if (changed && changed.flags && changed.flags[SFVTT_INIT_FLAG_SCOPE]) {
+    if (ui.combat && ui.combat.rendered && ui.combat.document === combat) {
+      ui.combat.render();
+    }
+  }
+
   // Only act when the round value changes
   if (changed && typeof changed.round != "undefined") {
     const actedIcon = "icons/svg/clock.svg";
@@ -204,9 +222,10 @@ Hooks.on("updateCombat", async (combat, changed) => {
 
   await Promise.all([
     sfvttSetCombatVisibility(combat, "hidden"),
-    sfvttClearInitiativeMap(combat),
-    ...combat.combatants.map(combatant => combatant.unsetFlag(SFVTT_INIT_FLAG_SCOPE, SFVTT_INIT_PENDING_KEY))
+    sfvttClearInitiativeMap(combat)
   ]);
 
-
+  if (ui.combat && ui.combat.rendered) {
+    ui.combat.render();
+  }
 });

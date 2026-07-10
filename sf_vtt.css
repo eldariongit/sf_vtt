@@ -318,38 +318,40 @@
   display: none !important;
 }
 
-.combat-tracker .combatant-control.roll[data-action="rollInitiative"]::after {
-  content: "?" !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  height: 100% !important;
-  font-size: 1.4em !important;
+/* Foundry only renders the native initiative value/roll button for a
+   combatant's owner (or the GM), so masking those elements with CSS alone
+   leaves every other client's rows blank. Instead, hide the native controls
+   entirely while hidden, and show our own marker element (added in
+   modules/hooks.js) which exists identically for every client. */
+.combat-sidebar .combat-tracker.hidden-initiative .combatant .combatant-initiative,
+.combat-sidebar .combat-tracker.hidden-initiative .combatant-control.roll[data-action="rollInitiative"] {
+  display: none !important;
 }
 
-.combat-sidebar .combat-tracker.hidden-initiative .combatant-initiative .value {
-  color: transparent !important;
-  position: relative !important;
+.combat-sidebar .combat-tracker .combatant {
+  position: relative;
 }
 
-.combat-sidebar .combat-tracker.hidden-initiative .combatant-initiative .value::after {
-  content: "?";
+.combat-sidebar .combat-tracker .combatant .sfvtt-init-marker {
+  display: none;
+}
+
+.combat-sidebar .combat-tracker.hidden-initiative .combatant .sfvtt-init-marker {
+  display: flex !important;
   position: absolute;
-  left: 0;
-  right: 0;
-  width: 100%;
-  text-align: center;
+  top: 0;
+  bottom: 0;
+  right: 6px;
+  align-items: center;
+  justify-content: center;
+  width: 1.6em;
+  font-size: 1.4em;
   color: #999;
+  pointer-events: none;
+  z-index: 2;
 }
 
-.combat-sidebar .combat-tracker.hidden-initiative .combatant.pending-init .combatant-initiative .value::after {
-  content: "!";
-  color: #6fcf97;
-}
-
-.combat-sidebar .combat-tracker.hidden-initiative .combatant.pending-init .combatant-control.roll[data-action="rollInitiative"]::after {
-  content: "!" !important;
+.combat-sidebar .combat-tracker.hidden-initiative .combatant.pending-init .sfvtt-init-marker {
   color: #6fcf97 !important;
 }
 /*

@@ -64,6 +64,7 @@ class DiceTools extends Application {
         tokenInit = tokenInit + Math.floor(Math.random() * 10) / 1000;
 
         entries.push({ 
+          combatantId: combatant.id,
           tokenId: token.id,
           initiative: tokenInit,
           name: token.name });

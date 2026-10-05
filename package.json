@@ -1,0 +1,12 @@
+{
+  "name": "sf_vtt",
+  "private": true,
+  "description": "Dev-only tooling for the sf_vtt Foundry system. Foundry never reads this file.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
